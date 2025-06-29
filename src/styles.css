@@ -1,0 +1,164 @@
+#body {
+    background-color: rgb(247, 247, 247);
+}
+
+
+.circle-image {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+.navbar-logo {
+    padding: 1.15rem 1.5rem;
+    text-align: center;
+}
+
+.navbar-logo img{
+    width: 180px;
+    height: 50px;
+}
+
+.navbar li a{
+    color: #78B3CE;
+}
+
+.navbar-nav .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #78B3CE;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    line-height: 1;
+}
+
+
+
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    }
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+    body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+.sidebar-text a{
+    color: #78B3CE;
+}
+.sidebar-fixed{
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    height: 100%;
+     width: 250px;
+}
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+
+.content-tab li button{
+    color: #78B3CE;
+}
+
+.table-profile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* UNIVERSAL CSS */
+
+.text-clamp-3 {
+    display: -webkit-box; /* Use box model for multi-line clamp */
+    -webkit-line-clamp: 3; /* Specify the number of lines */
+    -webkit-box-orient: vertical; /* Set the box orientation */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) to truncated text */
+}
+
+.text-justify p{
+    text-align: justify;
+}
+
+.back-arrow-button{
+    color: #78B3CE;
+    text-decoration: none;
+}
+
+/* UNIVERSAL CSS END */
+
+/* SWIPER STYLE */
+
+.swiper-container {
+    overflow: hidden; /* This makes the container clip its content */
+    padding-bottom: 50px; /* Add padding to accommodate the pagination */
+    position: relative; /* To position the pagination correctly */
+}
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #78B3CE; /* Change button color as needed */
+}
+
+
+.swiper-scrollbar {
+    --swiper-scrollbar-sides-offset: 45%;
+    --swiper-scrollbar-bg-color: lightblue;
+    --swiper-scrollbar-drag-bg-color: #78B3CE;
+    --swiper-scrollbar-size: 4px;
+}
+.swiper-pagination1, .swiper-pagination2{
+    --swiper-pagination-color: #78B3CE;
+}
+
+/* SWIPER STYLE END */

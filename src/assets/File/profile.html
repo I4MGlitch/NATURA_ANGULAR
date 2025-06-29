@@ -1,0 +1,963 @@
+<!-- 1. User Profile + Settings-->
+
+<!-- 2. Daily Activity log + upload -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website Title</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="index.html"><img src="assets/images/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.html">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="community.html">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="actions.html">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+            
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page.html">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">3</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="badge">5</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+            
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="profile.html">
+                                    <img src="assets/images/Cat03.jpg" class="circle-image me-2" alt="Circle Image">
+                                    <span>User</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>You have 3 new messages</li>
+                                <li>Your profile has been updated</li>
+                                <li>Meeting scheduled at 3 PM</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NAVBAR END -->
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav nav-tabs bg-white content-tab" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="user-tab" data-bs-toggle="tab" data-bs-target="#user-tab-pane" type="button" role="tab" aria-controls="user-tab-pane">User Page</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="friendlist-tab" data-bs-toggle="tab" data-bs-target="#friendlist-tab-pane" type="button" role="tab" aria-controls="friendlist-tab-pane">Friend List</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-md-9 bg-white">
+                                    <div class="row pt-4">
+                                        <div class="col-3 text-center">
+                                            <img src="assets/images/Cat03.jpg" class="img-fluid profile-image" alt="User Picture">
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="row pe-4">
+                                                <div class="col-12">
+                                                    <div class="row d-flex align-items-center">
+                                                        <div class="col-10">
+                                                            <p class="profile-username">Username</p>
+                                                            <p class="profile-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button class="btn" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class="fa-solid fa-gear fa-xl" style="color: #608BC1;"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                                                                 
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-12 col-sm-9">
+                                            <div class="d-flex justify-content-start">
+                                                <p class="btn-commuting me-2 mb-2"><i class="fa-solid fa-car"></i> Commuting Methods</p>
+                                                <p class="btn-energy me-2 mb-2"><i class="fa-solid fa-seedling"></i> Energy Sources</p>
+                                                <p class="btn-diet me-2 mb-2"><i class="fa-solid fa-utensils"></i> Dietery Preferences</p>
+                                            </div>   
+                                        </div>
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-12 col-sm-9 text-end">
+                                            <select class="form-select">
+                                                <option selected><i class="fa-solid fa-calendar-check"></i> Preferred reminder</option>
+                                                <option value="1">A Day</option>
+                                                <option value="2">1 Week</option>
+                                                <option value="3">1 Months</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 text-end mt-2">
+                                            <button type="button" class="btn me-2" data-bs-toggle="modal" data-bs-target="#uploadActivityModal" id="btn-post">
+                                                <i class="fa-solid fa-plus"></i> Upload Activity Log
+                                            </button>
+                                        </div>                                             
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <ul class="nav nav-tabs justify-content-center bg-white content-tab" id="profileTab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="user-post-tab" data-bs-toggle="tab" data-bs-target="#user-post-tab-pane" type="button" role="tab" aria-controls="user-post-tab-pane"><i class="fa-solid fa-clipboard fa-2xl"></i></button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="user-achievement-tab" data-bs-toggle="tab" data-bs-target="#user-achievement-tab-pane" type="button" role="tab" aria-controls="user-achievement-tab-pane"><i class="fa-solid fa-trophy fa-2xl"></i></button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="profileTabContent">
+                                            <!-- Post Tab Content -->
+                                            <div class="tab-pane fade show active" id="user-post-tab-pane" role="tabpanel" aria-labelledby="user-post-tab" tabindex="0">
+                                                
+                                                <div class="row" data-bs-toggle="modal" data-bs-target="#postModal">
+                                                    <div class="col-12 mt-4">
+                                                        
+                                                        <div class="d-flex align-items-center">
+                                                            <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                                <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                                <p class="chat-name mb-0">User</p>
+                                                            </a>
+                                                        </div>                                               
+                                                        <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                            <div class="post-space text-justify">
+                                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                            </div>
+                                                            <div class="post-images mt-1">
+                                                                <img src="assets/images/Cat03.jpg" class="img-fluid rounded-1" alt="Post Image">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-12 mt-2">
+                                                        <div class="d-flex justify-content-end">
+                                                            <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 6 December 2024</p>
+                                                            <button type="button" class="btn post-button">
+                                                                <i class="fa-regular fa-heart"></i> <span>10</span>
+                                                            </button>
+                                                            <button type="button" class="btn post-button">
+                                                                <i class="fa-regular fa-comment"></i> <span>1</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                                
+                                                <div class="row" data-bs-toggle="modal" data-bs-target="#postAchievementModal">
+                                                    <div class="col-12 mt-4">
+                                                        
+                                                        <div class="d-flex align-items-center">
+                                                            <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                                <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                                <p class="chat-name mb-0">User</p>
+                                                            </a>
+                                                        </div>                                               
+                                                        <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                            <div class="post-space text-justify">
+                                                                <p>Congratulations! This activity has been successfully completed 2 times. Keep up the excellent progress and aim for even greater accomplishments!</p>
+                                                            </div>
+                                                            <div class="card goal-card mb-3 border-left-primary">
+                                                                <div class="row g-0">
+                                                                    <div class="col-md-4">
+                                                                        <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                                    </div>
+                                                                    <div class="col-md-8 pb-2">                                                                
+                                                                        <div class="card-body">
+                                                                            <p class="card-title goal-card-title">Card Title</p>
+                                                                            <div class="d-flex justify-content-start">
+                                                                                <p class="tag-button me-1">Tags</p>
+                                                                            </div>
+                                                                            <p class="card-text text-clamp-3">
+                                                                                This is a wider card with supporting text below as a natural lead-in to
+                                                                                additional content. This content is a little bit longer.
+                                                                            </p>
+                                                                            <div class="d-flex align-items-center justify-content-end mb-2">
+                                                                                <!-- <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                                    <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                                                </div> -->
+                                                                                <p class="completed-button mb-2 me-1">Completed</p>
+                                                                                <p class="times-button mb-2">2 Times</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-12 mt-2">
+                                                        <div class="d-flex justify-content-end">
+                                                            <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 6 December 2024</p>
+                                                            <button type="button" class="btn post-button">
+                                                                <i class="fa-regular fa-heart"></i> <span>10</span>
+                                                            </button>
+                                                            <button type="button" class="btn post-button">
+                                                                <i class="fa-regular fa-comment"></i> <span>1</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3"> 
+
+                                            </div>
+                                            <!-- Post Tab Content End -->
+                                            
+                                            <!-- Achievement Tab Content -->
+                                            <div class="tab-pane fade" id="user-achievement-tab-pane" role="tabpanel" aria-labelledby="user-achievement-tab" tabindex="0">
+                                                <div class="container mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h5>Achievements</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                    <div class="col-xl-6 mb-2 d-flex justify-content-center">
+                                                        <div class="card goal-card mb-3 border-left-primary">
+                                                            <div class="row g-0">
+                                                                <div class="col-md-4">
+                                                                    <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                                </div>
+                                                                <div class="col-md-8 pb-2">                                                                
+                                                                    <div class="card-body">
+                                                                        <p class="card-title goal-card-title">Card Title</p>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <p class="tag-button me-1">Tags</p>
+                                                                        </div>
+                                                                        <p class="card-text text-clamp-3">
+                                                                            This is a wider card with supporting text below as a natural lead-in to
+                                                                            additional content. This content is a little bit longer.
+                                                                        </p>
+                                                                        <div class="d-flex align-items-center justify-content-end mb-2">
+                                                                            <!-- <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                                <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                                            </div> -->
+                                                                            <p class="completed-button mb-2 me-1">Completed</p>
+                                                                            <p class="times-button mb-2">2 Times</p>
+                                                                        </div>
+                                                                        
+                                                                        <button class="btn btn-outline-primary float-end me-1 mb-2" data-bs-toggle="modal" data-bs-target="#uploadAchievementModal"><i class="fa-solid fa-share"></i> Share</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                    
+                                                </div>
+                                            </div>
+                                            <!-- Achievement Tab Content End -->
+
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="col-md-3">
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Friend List Tab Content -->
+                        <div class="tab-pane fade" id="friendlist-tab-pane" role="tabpanel" aria-labelledby="friendlist-tab" tabindex="0">
+                            <div class="row bg-white">
+                                <div class="col-md-9">
+                                    <div class="row pt-4">                                    
+                                        <div class="col-12">
+                                            <h5 class="mb-3">Friend List</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form class="d-flex" role="search">
+                                                <input class="form-control me-2" type="search" placeholder="Search by username" aria-label="Search">
+                                                <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#addFriendModal">
+                                                    <i class="fa-solid fa-user-plus"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row align-items-center border-bottom py-3 mt-2">
+                                        <div class="col-auto">
+                                            <img src="assets/images/Cat03.jpg" class="mini-profile" alt="Friend Image">
+                                        </div>
+                                        <div class="col">
+                                            <p class="mb-0">User</p>
+                                            <!-- <small class="text-muted">Active 5m ago</small> -->
+                                        </div>
+                                        <div class="col-auto text-end">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary mt-1 me-1">
+                                                <i class="fa-solid fa-message"></i> Chat
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger mt-1 me-1">
+                                                <i class="fa-solid fa-user-minus"></i> Remove
+                                            </button>
+                                            <a class="btn btn-sm btn-outline-primary me-1 mt-1" href="#">
+                                                <i class="fa-solid fa-arrow-right-to-bracket"></i> Visit
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Friend List Tab Content End -->
+                    </div>
+                </div>
+
+                <!-- Edit Profile Modal -->
+                <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="settingsModalLabel">Settings</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="nav nav-tabs justify-content-center bg-white content-tab" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                      <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="true">Profile</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                      <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-tab-pane" type="button" role="tab" aria-controls="details-tab-pane" aria-selected="false">Details</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                      <button class="nav-link" id="logout-tab" data-bs-toggle="tab" data-bs-target="#logout-tab-pane" type="button" role="tab" aria-controls="logout-tab-pane" aria-selected="false">Logout</button>
+                                    </li>
+                                  </ul>
+                                  <div class="tab-content" id="myTabContent">
+
+
+                                    <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                                        <p class="text-center mt-4">Change your profile</p>
+                                        <form class="row g-3">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <img src="assets/images/Cat03.jpg" class="img-fluid" alt="Profile Picture" style="border-radius: 50%;">
+                                                    </div>
+                                                    <div class="col-md-8 mt-4">
+                                                        <div class="mb-3">
+                                                            <label for="formFile" class="form-label">Change Profile Picture</label>
+                                                            <input class="form-control" type="file" id="formFile">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputUsername" class="form-label">Change Username</label>
+                                                <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                                            </div>                                                            
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label">Bio</label>
+                                                <textarea class="form-control" id="inputBio" rows="3"></textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label"><i class="fa-solid fa-car"></i> Commuting Methods</label>
+                                                <select class="form-select">
+                                                    <option selected>Select Your Transportation</option>
+                                                    <option value="1">Cars</option>
+                                                    <option value="2">Motorcycles</option>
+                                                    <option value="3">Bicycles</option>
+                                                    <option value="4">Walking</option>
+                                                    <option value="5">Public Transportation</option>
+                                                    <option value="6">Taxis</option>
+                                                    <option value="7">Other</option>
+                                                    <option value="3">Diet</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label"><i class="fa-solid fa-seedling"></i> Energy Sources</label>
+                                                <select class="form-select">
+                                                    <option selected>Select Your Energy</option>
+                                                    <option value="1">Electricity</option>
+                                                    <option value="2">Gas</option>
+                                                    <option value="3">Coal</option>
+                                                    <option value="4">Oil</option>
+                                                    <option value="5">Nuclear</option>
+                                                    <option value="6">Hydro</option>
+                                                    <option value="7">Solar</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label"><i class="fa-solid fa-utensils"></i> Dietery Preferences</label>
+                                                <select class="form-select">
+                                                    <option selected>Select Your Diet</option>
+                                                    <option value="1">Meals</option>
+                                                    <option value="2">Vegetaria</option>
+                                                </select>
+                                            </div>
+
+                                        </form>
+                                        <hr class="my-3">
+                                        <p>Account & Security</p>
+                                        <form class="row g-3">
+                                            <div class="col-md-12">
+                                                <label for="inputPassword" class="form-label">Change Password</label>
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="Password">
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="text-center mt-4">Profile Details</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title">Username</p>
+                                                <p class="details-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title">Contact</p>
+                                                <p class="details-info">Contact</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title">Email</p>
+                                                <p class="details-info">Email</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title"><i class="fa-solid fa-car"></i> Commuting Methods</p>
+                                                <p class="details-info">Commuting Methods</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title"><i class="fa-solid fa-seedling"></i> Energy Sources</p>
+                                                <p class="details-info">Energy Sources</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title"><i class="fa-solid fa-utensils"></i> Diet Preferences</p>
+                                                <p class="details-info">Diet Preferences</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="tab-pane fade" id="logout-tab-pane" role="tabpanel" aria-labelledby="logout-tab" tabindex="0">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="text-center mt-4">Are You Sure Want To Logout?</p>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <button type="button" class="btn btn-danger">Logout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit Profile Modal End -->
+
+                <!-- Post Modal -->
+                <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12 post-content pe-2">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                    <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                    <p class="chat-name mb-0">User</p>
+                                                </a>
+                                            </div>                                               
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                </div>
+                                                <div class="post-images mt-1">
+                                                    <img src="assets/images/Cat03.jpg" class="img-fluid rounded-1" alt="Post Image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 6 December 2024</p>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-heart"></i> <span>10</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>2</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <p>Comments</p>
+                                        </div>
+                                        <div class="col-md-12 post-comment">
+                                            <div>
+                                                <div class="d-flex align-items-center">
+                                                    <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                        <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                        <p class="chat-name mb-0">User</p>
+                                                    </a>
+                                                </div>                                               
+                                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                    <div class="post-space text-justify">
+                                                        <p>Lorem Ipsum is simply dummy text.</p>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <form class="d-flex align-items-center mt-3">
+                                                <input type="text" class="form-control me-2" placeholder="Write a comment..." aria-label="Comment">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Modal End -->
+
+                <!-- Post Achievement Modal -->
+                <div class="modal fade" id="postAchievementModal" tabindex="-1" aria-labelledby="postAchievementModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12 post-content pe-2">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                    <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                    <p class="chat-name mb-0">User</p>
+                                                </a>
+                                            </div>                                               
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>Congratulations! This activity has been successfully completed 2 times. Keep up the excellent progress and aim for even greater accomplishments!</p>
+                                                </div>
+                                                <div class="card goal-card mb-3 border-left-primary">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                        </div>
+                                                        <div class="col-md-8 pb-2">                                                                
+                                                            <div class="card-body">
+                                                                <p class="card-title goal-card-title">Card Title</p>
+                                                                <div class="d-flex justify-content-start">
+                                                                    <p class="tag-button me-1">Tags</p>
+                                                                </div>
+                                                                <p class="card-text text-clamp-3">
+                                                                    This is a wider card with supporting text below as a natural lead-in to
+                                                                    additional content. This content is a little bit longer.
+                                                                </p>
+                                                                <div class="d-flex align-items-center justify-content-end mb-2">
+                                                                    <!-- <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                        <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                                    </div> -->
+                                                                    <p class="completed-button mb-2 me-1">Completed</p>
+                                                                    <p class="times-button mb-2">2 Times</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 6 December 2024</p>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-heart"></i> <span>10</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>2</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <p>Comments</p>
+                                        </div>
+                                        <div class="col-md-12 post-comment">
+                                            <div>
+                                                <div class="d-flex align-items-center">
+                                                    <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                        <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                        <p class="chat-name mb-0">User</p>
+                                                    </a>
+                                                </div>                                               
+                                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                    <div class="post-space text-justify">
+                                                        <p>Lorem Ipsum is simply dummy text.</p>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <form class="d-flex align-items-center mt-3">
+                                                <input type="text" class="form-control me-2" placeholder="Write a comment..." aria-label="Comment">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Achievement Modal End -->
+
+                <!-- Upload Post Modal -->
+                <div class="modal fade" id="uploadPostModal" tabindex="-1" aria-labelledby="uploadPostModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title">Upload Post</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Upload Image</label>
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Enter Text</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <form>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Post Modal End -->
+
+                <!-- Upload Achievement Modal -->
+                <div class="modal fade" id="uploadAchievementModal" tabindex="-1" aria-labelledby="uploadAchievementModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="editProfileModalLabel">Upload Achievement</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card goal-card mb-3 border-left-primary">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                </div>
+                                                <div class="col-md-8 pb-2">                                                                
+                                                    <div class="card-body">
+                                                        <p class="card-title goal-card-title">Card Title</p>
+                                                        <div class="d-flex justify-content-start">
+                                                            <p class="tag-button me-1">Tags</p>
+                                                        </div>
+                                                        <p class="card-text text-clamp-3">
+                                                            This is a wider card with supporting text below as a natural lead-in to
+                                                            additional content. This content is a little bit longer.
+                                                        </p>
+                                                        <div class="d-flex align-items-center justify-content-end mb-2">
+                                                            <!-- <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                            </div> -->
+                                                            <p class="completed-button mb-2 me-1">Completed</p>
+                                                            <p class="times-button mb-2">2 Times</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                  
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Achievement Modal End -->
+
+                <!-- Add Friend Modal -->
+                <div class="modal fade" id="addFriendModal" tabindex="-1" aria-labelledby="addFriendModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="addFriendModalLabel">Add Friend</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="d-flex" role="search">
+                                            <input class="form-control me-2" type="search" placeholder="Search by username" aria-label="Search">
+                                            <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 add-friend-scroll">
+                                        <div class="row align-items-center border-bottom py-3 mt-2">
+                                            <div class="col-auto">
+                                                <img src="assets/images/Cat03.jpg" class="mini-profile" alt="Friend Image">
+                                            </div>
+                                            <div class="col">
+                                                <p class="mb-0">User</p>
+                                            </div>
+                                            <div class="col-auto text-end">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary mt-1 me-1">
+                                                    <i class="fa-solid fa-plus"></i> Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>                                                 
+                </div>
+                <!-- Add Friend Modal End -->
+
+                <!-- Upload Activity Modal -->
+                <div class="modal fade" id="uploadActivityModal" tabindex="-1" aria-labelledby="uploadActivityModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="uploadActivityModalLabel"><i class="fa-solid fa-bars-progress"></i> Upload Activity Log</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <section class="container">
+                                    <form action="#" class="form">
+                                        <div class="mb-3">
+                                            <label for="currentDate" class="form-label"><i class="fa-solid fa-calendar-days"></i> Current Date</label>
+                                            <input type="date" class="form-control" id="currentDate" placeholder="Enter current date" required />
+                                        </div>        
+                                
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-car"></i> Vehicle</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="vehicleType" class="form-label">Vehicle Type</label> -->
+                                                    <select id="vehicleType" class="form-select">
+                                                        <option hidden>Vehicle Type</option>
+                                                        <option>Car</option>
+                                                        <option>Motorcycle</option>
+                                                        <option>Public Transportation</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="distanceTraveled" class="form-label">Distance Traveled (KM)</label> -->
+                                                    <input type="number" class="form-control" id="distanceTraveled" placeholder="Distance Traveled (KM)" required />
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row mt-3">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="fuelType" class="form-label">Fuel Type</label> -->
+                                                    <select id="fuelType" class="form-select">
+                                                        <option hidden>Fuel Type</option>
+                                                        <option>Pertamax</option>
+                                                        <option>Pertalite</option>
+                                                        <option>Solar</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="fuelConsumption" class="form-label">Total Fuel Consumption (L)</label> -->
+                                                    <input type="number" class="form-control" id="fuelConsumption" placeholder="Total fuel consumption (L)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-seedling"></i> Energy Source</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="energySource" class="form-label">Energy Source</label> -->
+                                                    <select id="energySource" class="form-select">
+                                                        <option hidden>Energy Source</option>
+                                                        <option>Hydropower</option>
+                                                        <option>Coals</option>
+                                                        <option>Natural Gas</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="energyConsumption" class="form-label">Total Energy Consumption (KWH)</label> -->
+                                                    <input type="text" class="form-control" id="energyConsumption" placeholder="Total energy consumption (KWH)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-utensils"></i> Consumed Meals</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="foodType" class="form-label">Food Type</label> -->
+                                                    <select id="foodType" class="form-select">
+                                                        <option hidden>Food Type</option>
+                                                        <option>Plant-based</option>
+                                                        <option>Animal-based</option>
+                                                        <option>Processed food</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="foodQuantity" class="form-label">Food Quantity (KG)</label> -->
+                                                    <input type="number" class="form-control" id="foodQuantity" placeholder="Food quantity (KG)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </section>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <!-- Upload Activity Modal End -->
+            
+            </div>
+        </div>
+    </div>
+    <div class="floating-buttons">
+        <button type="button" class="btn btn-primary btn-floating btn-lg" id="btn-post" data-bs-target="#uploadPostModal" data-bs-toggle="modal"> 
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="assets/chart.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/swiper.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* ADMIN MANAGE */
+.type-button{
+    font-size: 8px;
+    background-color: #0A3981;
+    color: #fff;
+    padding: 1vh 2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+
+.tag-button{
+    font-size: 8px;
+    background-color: #4e73df;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.available-button{
+    font-size: 8px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.inprogress-button{
+    font-size: 8px;
+    background-color: tomato;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.completed-button{
+    font-size: 8px;
+    background-color:darkgray;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.times-button{
+    font-size: 8px;
+    background-color:darkgray;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+
+/* ADMIN MANAGE END */
+
+/* MANAGE GOAL SECTION */
+.goal-card{
+    min-height: 30vh;
+}
+.goal-card img{
+    width: 100%;
+    height: auto;
+}
+.goal-card-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+.score-modal img{
+    max-width: 300px;
+    height: auto;
+}
+
+.goal-score{
+    background-color: #608BC1;
+    color: #0A3981;
+    padding: 1vh 2vh;
+    border-radius: 2vh;
+    font-size: 16px;
+    font-weight: 800;
+    margin-right: 1vh;
+}
+.xp-score{
+    background-color: #608BC1;
+    color: #0A3981;
+    padding: 1vh 2vh;
+    border-radius: 2vh;
+    font-size: 16px;
+    font-weight: 800;
+    margin-right: 1vh;
+}
+
+.modal-custom-width {
+    max-width: 600px; /* Sesuaikan lebar maksimal */
+    width: 80%; /* Tambahkan jika ingin proporsi dinamis */
+}
+
+/* MANAGE GOAL SECTION END */
+
+/* MANAGE ARTICLE SECTION */
+.article-card{
+    max-width: 540px;
+}
+.article-card img{
+    width: 100%;
+    height: auto;
+}
+.article-card-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* MANAGE ARTICLE SECTION END */

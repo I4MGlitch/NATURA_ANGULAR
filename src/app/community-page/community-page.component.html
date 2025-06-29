@@ -1,0 +1,286 @@
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="/"><img src="/assets/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/community-page">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/actions-page">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-3 mt-auto" (click)="logout()"
+                    routerLink="/logreg-page" style="color: black; font-weight: bold;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">{{ unreadMessageCount }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="user-profile-page">
+                                    <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                    ? getImageUrl(userData.profilePic[0].data) 
+                                    : getErrorImageUrl())" class="circle-image me-2"
+                                        alt="{{ userData.username }} Image" />
+                                    <span>{{ userData.username }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- NAVBAR END -->
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row p-0">
+                    <div class="col-md-9 bg-white" style="min-height: 90vh;">
+                        <div class="row mt-3">
+                            <div class="col-md-6 col-12">
+                                <div class="d-flex align-items-start">
+                                    <form class="d-flex w-100">
+                                        <input type="text" class="form-control me-2" placeholder="Search here..."
+                                            aria-label="Search">
+                                        <button type="submit" class="btn btn-secondary">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+
+                            </div>
+
+                        </div>
+                        <hr class="my-3">
+                        <div class="row" *ngFor="let post of posts.slice().reverse()" (click)="openPostModal(post)">
+                            <div>
+                                <div class="d-flex align-items-center">
+                                    <a class="d-flex align-items-center text-decoration-none" [routerLink]="['/user-page/', post.username]"
+                                        style="color: inherit;">
+                                        <img [src]="getProfilePic(post.username)" class="mini-profile"
+                                            alt="{{ post.username }} Image">
+                                        <p class="chat-name ps-1 mb-0">{{post.username}}</p>
+                                    </a>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;" class="col-12" data-bs-toggle="modal" data-bs-target="#postModal">
+                                    <div class="post-space text-justify">
+                                        <p>{{post.description}}</p>
+                                    </div>
+                                    <div class="post-images mt-1">
+                                        <img [src]="(post.pictures && post.pictures[0]?.data && post.pictures[0]?.contentType !== '' 
+                                        ? getImageUrl(post.pictures[0].data) 
+                                        : getErrorImageUrl())" class="img-fluid rounded-1"
+                                            alt="{{ post.username }} Image" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="d-flex justify-content-end">
+                                    <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> {{post.date |
+                                        date: 'd MMMM yyyy'}}
+                                    </p>
+                                    <button type="button" class="btn post-button"
+                                        (click)="onLike(post._id,userData.username, $event)">
+                                        <i class="fa-regular fa-heart"></i> <span>
+                                            {{post.like.length}}</span>
+                                    </button>
+                                    <button type="button" class="btn post-button" data-bs-toggle="modal"
+                                        data-bs-target="#postModal">
+                                        <i class="fa-regular fa-comment"></i> <span>
+                                            {{post.comments.length}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-3">
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+
+                <!-- Post Modal -->
+                <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12 post-content pe-2">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none" [routerLink]="['/user-page/', activePost.username]"
+                                                    style="color: inherit;">
+                                                    <img [src]="getProfilePic(activePost.username)" class="mini-profile"
+                                                    alt="{{ activePost.username }} Image"
+                                                    >
+                                                    <p class="chat-name ps-1 mb-0">{{activePost.username}}</p>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>{{ activePost.description }}</p>
+                                                </div>
+                                                <div class="post-images mt-1">
+                                                    <img [src]="(activePost.pictures && activePost.pictures[0]?.data && activePost.pictures[0]?.contentType !== '' 
+                                                    ? getImageUrl(activePost.pictures[0].data) 
+                                                    : getErrorImageUrl())" class="img-fluid rounded-1"
+                                                        alt="{{ activePost.username }} Image"
+                                                        />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i>
+                                                    {{activePost.date | date: 'd MMMM yyyy'}}</p>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-heart"></i> <span> {{activePost.like.length
+                                                        }}</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>
+                                                        {{activePost.commentCount}}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <p>Comments</p>
+                                        </div>
+                                        <div class="col-md-12 post-comment">
+                                            <div *ngFor="let commenting of activePost.comments">
+                                                <div class="d-flex align-items-center">
+                                                    <a class="d-flex align-items-center text-decoration-none"[routerLink]="['/user-page/', commenting.username]"
+                                                        style="color: inherit;">
+                                                        <img [src]="getProfilePic(commenting.username)"
+                                                            class="circle-image mini-profile me-2"
+                                                            alt="{{ commenting.username }} Image"/>
+                                                        <p class="chat-name mb-0"> {{commenting.username}}</p>
+                                                    </a>
+                                                </div>
+                                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                    <div class="post-space text-justify">
+                                                        {{commenting.comment}}
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                        </div>
+                                        <form class="d-flex align-items-center mt-3"
+                                            (ngSubmit)="onAddComment(activePost._id, userData.username, newComment)">
+                                            <input type="text" class="form-control me-2"
+                                                placeholder="Write a comment..." aria-label="Comment"
+                                                [(ngModel)]="newComment" name="commentInput">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa-solid fa-paper-plane"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Modal End -->
+
+
+                <!-- Upload Post Modal -->
+                <div class="modal fade" id="uploadPostModal" tabindex="-1" aria-labelledby="uploadPostModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title">Upload Post</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- Image Preview -->
+                                        <div class="mb-3">
+                                            <div>
+                                                <img [src]="imagePreview" class="img-fluid add-picture"
+                                                alt="{{ createPostData.username || 'Preview Image' }}"
+                                                *ngIf="imagePreview" />
+                                                <p *ngIf="!imagePreview">No picture selected</p>
+                                            </div>                                           
+                                            <label for="formFile" class="form-label">Upload Image</label>
+                                            <input class="form-control" type="file" id="formFile"
+                                                (change)="onFileChangePost($event)" />
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Enter
+                                                Text</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                [(ngModel)]="createPostData.description" name="description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="createPost()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Post Modal End -->
+
+            </div>
+        </div>
+    </div>
+    <div class="floating-buttons">
+        <button type="button" class="btn btn-primary btn-floating btn-lg" id="btn-post"
+            data-bs-target="#uploadPostModal" data-bs-toggle="modal">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>

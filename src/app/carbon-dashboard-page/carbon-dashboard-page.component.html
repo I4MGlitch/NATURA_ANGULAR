@@ -1,0 +1,936 @@
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="/"><img src="/assets/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/community-page">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/actions-page">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-3 mt-auto" (click)="logout()"
+                    routerLink="/logreg-page" style="color: black; font-weight: bold;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">{{ unreadMessageCount }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="user-profile-page">
+                                    <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                    ? getImageUrl(userData.profilePic[0].data) 
+                                    : getErrorImageUrl())" class="circle-image me-2"
+                                        alt="{{ userData.username }} Image" />
+                                    <span>{{ userData.username }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- NAVBAR END -->
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav nav-tabs bg-white content-tab" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="activity-log-tab" data-bs-toggle="tab"
+                                data-bs-target="#activity-log-tab-pane" type="button" role="tab"
+                                aria-controls="activity-log-tab-pane">Activity Log</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="historical-tab" data-bs-toggle="tab"
+                                data-bs-target="#historical-tab-pane" type="button" role="tab"
+                                aria-controls="historical-tab-pane">Historical Tracking</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="recommendations-tab" data-bs-toggle="tab"
+                                data-bs-target="#recommendations-tab-pane" type="button" role="tab"
+                                aria-controls="recommendations-tab-pane">Recommendations</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="activity-log-tab-pane" role="tabpanel"
+                            aria-labelledby="activity-log-tab" tabindex="0">
+                            <div class="row bg-white mb-4">
+                                <div *ngIf="currentmaxEmissionsValue === 0 || currentmaxEmissionsValue === null" class="col-md-12 p-4">
+                                    <div class="card shadow-sm">
+                                      <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                          <div class="me-3">
+                                            <i
+                                              class="fa-solid fa-exclamation-circle text-warning"
+                                              style="font-size: 2rem;"
+                                            ></i>
+                                          </div>
+                                          <div>
+                                            <p class="mb-1 fw-bold">Notification</p>
+                                            <p class="mb-0">
+                                              Please upload your daily activity log to keep your records up to date.
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+
+                                <div class="col-md-12 pt-4">
+                                    <div class="row">
+                                        <h1 class="mb-4 h1">Activity Log Dashboard</h1>
+                                        <!-- Select Date -->
+                                        <div class="col-md-4 col-6">
+                                            <label for="fromDate" class="form-label">Select Date</label>
+                                            <input type="date" class="form-control" id="fromDate" [(ngModel)]="currentDate" required/>
+                                            <!-- <button class="btn btn-primary mt-2" (click)="calculateMostFrequentStatsForSelectedDate(currentDate)">
+                                                Update Date
+                                              </button>  -->
+                                        </div>
+                                        <div class="col-md-4 col-6" style="margin-top: 30px;">
+                                            <button class="btn btn-primary" (click)="calculateMostFrequentStatsForSelectedDate(currentDate)">
+                                                Update Data
+                                              </button> 
+                                        </div>
+                                        <!-- <div class="col-md-4 col-6 mb-4">
+                                            <label for="currrentDate" class="form-label">Current Date</label>
+                                            <input type="date" id="currentDate" class="form-control" [value]="thecurrentDate" readonly />
+                                        </div> -->
+                                        <div class="col-md-4 col-12 text-center">
+                                            <label for="toDate" class="form-label d-block"></label>
+                                            <button type="button" class="btn " data-bs-toggle="modal"
+                                                data-bs-target="#uploadActivityModal" id="btn-post">
+                                                <i class="fa-solid fa-plus"></i> Upload Activity Log
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <h3 class="h3">Carbon Emissions Calculation</h3>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm border-transportation-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Transportation Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-car fa-2xl"
+                                                            style="color: rgba(75, 192, 192, 1);"></i></a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p>This Day's Transportation:</p>
+                                                            <p class="total-emissions-transportation">{{currentFilteredStats?.transportationModes.mostFrequent }}</p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>Today Transportation Emissions:</p>
+                                                            <p class="total-emissions-transportation">{{ currentFilteredStats?.transportationModes.total }} kg CO₂</p>                                                
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card shadow-sm mt-2 border-energy-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Energy Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-bolt fa-2xl"
+                                                            style="color: rgba(153, 102, 255, 1);"></i></a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p>This Day's Energy Emissions: </p>
+                                                            <p class="total-emissions-energy">{{ currentFilteredStats?.energyUsage.mostFrequent }}</p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>This Day's Energy Emissions: </p>
+                                                            <p class="total-emissions-energy">{{ currentFilteredStats?.energyUsage.total }} kg CO₂</p> 
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                            <div class="card shadow-sm mt-2 mb-4 border-diet-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Diet Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-utensils fa-2xl"
+                                                            style="color: rgba(255, 159, 64, 1);"></i></a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p>This Day's Dietary: </p>
+                                                            <p class="total-emissions-diet">{{ currentFilteredStats?.meals.mostFrequent }}</p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>This Day's Dietary Emissions: </p>
+                                                            <p class="total-emissions-diet">{{ currentFilteredStats?.meals.total }} kg CO₂</p> 
+                                                        </div>
+                                                    </div>                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm p-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="w-100" style="max-width: 800px; min-height: 490px;">
+                                                        <canvas id="canvas1"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="my-3">
+                                    <div class="row mt-4">
+                                        <div class="col-md-12">
+                                        <div class="card shadow-sm">
+                                            <div class="card-body">
+                                                <h3 class="h3">Environmental Impact</h3>
+                                                <p>
+                                                    In the pursuit of reducing our carbon footprint, understanding
+                                                    the
+                                                    sources of emissions is crucial. By analyzing the activities
+                                                    related to
+                                                    transportation, energy usage, and diet, we can gain valuable
+                                                    insights
+                                                    into which areas contribute the most to greenhouse gas
+                                                    emissions. This
+                                                    breakdown provides a closer look at how different factors—such
+                                                    as the
+                                                    modes of transportation we use, the energy sources we rely on,
+                                                    and the
+                                                    meals we consume—contribute to our overall emissions.
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-4">
+                                                        <div class="card shadow-sm border-transportation-primary environtmental-card">
+                                                            <div class="card-body">
+                                                                <p><strong>Transportation Emissions:</strong></p>
+                                                                <p>
+                                                                    The Day's transportation mode contributing to carbon
+                                                                    emissions
+                                                                    is <strong>{{
+                                                                        currentFilteredStats?.transportationModes.mostFrequent
+                                                                        }}</strong>, with a total emission of <strong>{{
+                                                                        currentFilteredStats?.transportationModes.total }} kg
+                                                                        CO₂</strong>.
+                                                                    The total emissions from the Day's transportation mode
+                                                                    alone
+                                                                    amount to <strong>{{
+                                                                        currentFilteredStats?.transportationModes.total }}
+                                                                        kg
+                                                                        CO₂</strong>.
+                                                                    This shows how even seemingly small choices, such as the mode of
+                                                                    transport, can have a significant impact on our overall
+                                                                    emissions.
+                                                                </p>
+                                                            </div>
+                                                        </div>                                                     
+                                                    </div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <div class="card shadow-sm border-energy-primary environtmental-card">
+                                                            <div class="card-body">
+                                                                <p><strong>Energy Emissions:</strong></p>
+                                                                <p>
+                                                                    When it comes to energy consumption, the Day's Energy type is
+                                                                    <strong>{{ currentFilteredStats?.energyUsage.mostFrequent
+                                                                        }}</strong>.
+                                                                    This category contributes a total of <strong>{{
+                                                                        currentFilteredStats?.energyUsage.total }} kg CO₂</strong> in
+                                                                    emissions, and the Day's energy source contributes
+                                                                    <strong>{{
+                                                                        currentFilteredStats?.energyUsage.total }} kg
+                                                                        CO₂</strong>
+                                                                    by itself.
+                                                                    This highlights the importance of the energy sources we use
+                                                                    daily and
+                                                                    the potential for cleaner, renewable alternatives.
+                                                                </p>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <div class="card shadow-sm border-diet-primary environtmental-card">
+                                                            <div class="card-body">
+                                                                <p><strong>Diet Emissions:</strong></p>
+                                                                <p>
+                                                                    For diet-related emissions, the Day's meal type is
+                                                                    <strong>{{
+                                                                        currentFilteredStats?.meals.mostFrequent }}</strong>.
+                                                                    The total emissions from the Day's meals amount to <strong>{{
+                                                                        currentFilteredStats?.meals.total }} kg CO₂</strong>, and the
+                                                                    Day's meal type alone contributes <strong>{{
+                                                                        currentFilteredStats?.meals.total }} kg
+                                                                        CO₂</strong>.
+                                                                    This serves as a reminder that our food choices, such as the
+                                                                    type of
+                                                                    diet we follow, also play a vital role in our environmental
+                                                                    impact.
+                                                                </p>
+                                                            </div>
+                                                        </div>                                                     
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p><strong>Overall Category Emissions:</strong></p>
+                                                        <p>
+                                                            Of all the categories, the one with the highest emissions is
+                                                            <strong>{{
+                                                                currentmaxEmissionsCategory }}</strong>,
+                                                            with a total emission of <strong>{{ currentmaxEmissionsValue }} kg
+                                                                CO₂</strong>.
+                                                            This finding underscores the importance of focusing our efforts
+                                                            on this
+                                                            category in order to make meaningful reductions in our carbon
+                                                            footprint.
+                                                            By understanding these patterns, we can make more informed
+                                                            decisions to
+                                                            lower our emissions and work toward a more sustainable future.
+                                                        </p>
+                
+                                                        <div *ngIf="currentFilteredStats?.totalEmission <= 20; else highEmissionSummary">
+                                                            <!-- Low Carbon Footprint Summary -->
+                                                            <p><strong>Summary:</strong></p>
+                                                            <p>
+                                                                Your current carbon footprint is low with total <strong>{{currentFilteredStats?.totalEmission}} kg CO₂</strong>, meaning your daily activities have a positive impact on the environment.
+                                                                With emissions below <strong>20kg CO₂</strong>, you contribute to reducing global warming, maintaining cleaner air quality, 
+                                                                and supporting ecosystem sustainability.
+                                                            </p>
+                                                            <p>
+                                                                Congratulations! You have successfully kept your daily carbon footprint below <strong>20kg CO₂</strong>. This is a positive step 
+                                                                towards an eco-friendly lifestyle! Keep up these good habits and inspire others to care for the environment as well.
+                                                            </p>
+                                                        </div>
+                                                            
+                                                            <!-- High Carbon Footprint Summary -->
+                                                        <ng-template #highEmissionSummary>
+                                                            <p><strong>Summary:</strong></p>
+                                                            <p>
+                                                                Your current carbon footprint is high with total <strong>{{currentFilteredStats?.totalEmission}} kg CO₂</strong>, meaning your daily activities are putting pressure on the environment.
+                                                                Emissions above <strong>20kg CO₂</strong> can contribute to increased greenhouse gases, air pollution, and accelerated climate change. 
+                                                                This impact also affects ecosystems and biodiversity, especially in the long term.
+                                                            </p>
+                                                            <p>
+                                                                Your carbon footprint today exceeds <strong>20kg CO₂</strong>. Here are some ways to reduce your carbon emissions:
+                                                            </p>
+                                                            <ul style="margin-left: 20px;">
+                                                                <li>Reduce the use of private motor vehicles and switch to public transportation, cycling, or walking.</li>
+                                                                <li>Decrease red meat consumption and eat more vegetables or plant-based foods.</li>
+                                                                <li>Save energy at home by turning off lights and electronic devices when not in use.</li>
+                                                                <li>Choose products with eco-friendly packaging.</li>
+                                                            </ul>
+                                                        </ng-template>                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="historical-tab-pane" role="tabpanel" aria-labelledby="historical-tab" tabindex="0">
+                            <div class="row bg-white">
+                                <div class="col-md-12">
+                                    <div class="row p-4">
+                                        <h2>Historical Tracking</h2>
+                                        <!-- From Date Input -->
+                                        <div class="col-md-4 col-6">
+                                            <label for="fromDate" class="form-label">From Date</label>
+                                            <input type="date" class="form-control" id="fromDate" [(ngModel)]="fromDate" required />
+                                        </div>
+                        
+                                        <!-- To Date Input -->
+                                        <div class="col-md-4 col-6">
+                                            <label for="toDate" class="form-label">To Date</label>
+                                            <input type="date" class="form-control" id="toDate" [(ngModel)]="toDate" required />
+                                        </div>
+                        
+                                        <!-- Apply Button -->
+                                        <div class="col-md-4 col-12 text-start mt-4">
+                                            <button type="button" class="btn btn-primary mt-2" (click)="applyDateRange()">
+                                                <i class="fa-solid fa-calendar-check"></i> Apply
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Chart Canvas -->
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <div class="w-100" style="max-width: 800px;">
+                                        <canvas id="canvas3"></canvas>
+                                    </div>
+                                </div>
+                        
+                                <!-- Carbon Emissions Summary -->
+                                <div class="col-md-12 mt-4">
+                                    <div class="row">
+                                        <h3 class="h3 mt-4 mb-4">Carbon Emissions Summary</h3>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm mt-2 border-transportation-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Transportation Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-car fa-2xl"
+                                                                style="color: rgba(75, 192, 192, 1);"></i></a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p>Total Emissions:
+                                                            </p>
+                                                            <p class="total-emissions-transportation">
+                                                                {{ dateFilteredStats?.transportationModes.total }} kg CO₂
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>Most Frequent: {{
+                                                                dateFilteredStats?.transportationModes.mostFrequent }}</p>
+                                                                <p>Total for Most Frequent ({{
+                                                                    dateFilteredStats?.transportationModes.mostFrequent }}):
+                                                                    {{ dateFilteredStats?.transportationModes.mostFrequentTotal
+                                                                    }} kg CO₂
+                                                                </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card shadow-sm mt-2 border-energy-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Energy Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-bolt fa-2xl"
+                                                                style="color: rgba(153, 102, 255, 1);"></i></a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p>Total Emissions:</p>
+                                                            <p class="total-emissions-energy">
+                                                                {{ dateFilteredStats?.energyUsage.total }} kg CO₂
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>Most Frequent: {{ dateFilteredStats?.energyUsage.mostFrequent
+                                                            }}</p>
+                                                            <p>Total for Most Frequent ({{
+                                                                dateFilteredStats?.energyUsage.mostFrequent }}):
+                                                                {{ dateFilteredStats?.energyUsage.mostFrequentTotal }} kg
+                                                                CO₂
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card shadow-sm mt-2 border-diet-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Diet Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-utensils fa-2xl"
+                                                                style="color:rgba(255, 159, 64, 1)"></i></a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p>Total Emissions:
+                                                            </p>
+                                                            <p class="total-emissions-diet">
+                                                                {{ dateFilteredStats?.meals.total }} kg CO₂
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>Most Frequent: {{ dateFilteredStats?.meals.mostFrequent }}
+                                                            </p>
+                                                            <p>Total for Most Frequent ({{
+                                                                dateFilteredStats?.meals.mostFrequent }}):
+                                                                {{ dateFilteredStats?.meals.mostFrequentTotal }} kg CO₂
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm p-4 mt-2">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="w-100" style="max-width: 800px;  min-height: 490px;">
+                                                        <canvas id="canvas2"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-4 mb-4">
+                                    <div class="scrollable-table">
+                                      <table class="table table-bordered" cellspacing="0" cellpadding="5" style="width: 100%; text-align: center;">
+                                        <thead>
+                                          <tr>
+                                            <th>No</th>
+                                            <th>Date</th>
+                                            <th>Transportation</th>
+                                            <th>Transportation Emission</th>
+                                            <th>Energy Source</th>
+                                            <th>Energy Source Emission</th>
+                                            <th>Meals</th>
+                                            <th>Meals Emission</th>
+                                            <th>Total Emission</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <!-- Use *ngFor to iterate over activityLogs -->
+                                          <tr *ngFor="let activityLog of activityLogs; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ activityLog.date | date: 'dd/MM/yyyy' }}</td>
+                                            <td>{{ activityLog.transportationModes || '-' }}</td>
+                                            <td>{{ activityLog.transportationEmission ? activityLog.transportationEmission + ' kg CO₂' : '-' }}</td>
+                                            <td>{{ activityLog.energyUsage || '-' }}</td>
+                                            <td>{{ activityLog.energyEmission ? activityLog.energyEmission + ' kg CO₂' : '-' }}</td>
+                                            <td>{{ activityLog.meals || '-' }}</td>
+                                            <td>{{ activityLog.mealsEmission ? activityLog.mealsEmission + ' kg CO₂' : '-' }}</td>
+                                            <td>{{ activityLog.totalEmission }} kg CO₂</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  
+                            </div>
+                        </div>
+                        
+
+                        <div class="tab-pane fade" id="recommendations-tab-pane" role="tabpanel"
+                            aria-labelledby="recomendations-tab" tabindex="0">
+
+                            <div class="row bg-white">
+                                <div class="col-md-12">
+                                    <div class="row mt-4">
+                                        <h2>Recommendations</h2>
+                                        <p><strong>Carbon Emissions Calculation</strong></p>
+                                        <div class="col-md-4">
+                                            <div class="card shadow-sm mt-2 border-transportation-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Transportation Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-car fa-2xl"
+                                                                style="color: rgba(75, 192, 192, 1);"></i></a>
+                                                    </div>
+                                                    <p>Total Emissions:
+                                                    </p>
+                                                    <p class="total-emissions-transportation">
+                                                        {{mostFrequentStats?.transportationModes.total }} kg CO₂
+                                                    </p>
+                                                    <p>Most Frequent: {{
+                                                        mostFrequentStats?.transportationModes.mostFrequent }}</p>
+                                                    <p>Total for Most Frequent ({{
+                                                        mostFrequentStats?.transportationModes.mostFrequent }}):
+                                                        {{ mostFrequentStats?.transportationModes.mostFrequentTotal
+                                                        }} kg CO₂
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card shadow-sm mt-2 border-energy-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Energy Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-bolt fa-2xl"
+                                                                style="color: rgba(153, 102, 255, 1);"></i></a>
+                                                    </div>
+                                                    <p>Total Emissions:</p>
+                                                    <p class="total-emissions-energy">
+                                                        {{ mostFrequentStats?.energyUsage.total }} kg CO₂
+                                                    </p>
+                                                    <p>Most Frequent: {{ mostFrequentStats?.energyUsage.mostFrequent
+                                                        }}</p>
+                                                    <p>Total for Most Frequent ({{
+                                                        mostFrequentStats?.energyUsage.mostFrequent }}):
+                                                        {{ mostFrequentStats?.energyUsage.mostFrequentTotal }} kg
+                                                        CO₂
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card shadow-sm mt-2 border-diet-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Diet Emissions</strong></p>
+                                                        <a><i class="fa-solid fa-utensils fa-2xl"
+                                                                style="color:rgba(255, 159, 64, 1)"></i></a>
+                                                    </div>
+                                                    <p>Total Emissions:
+                                                    </p>
+                                                    <p class="total-emissions-diet">
+                                                        {{ mostFrequentStats?.meals.total }} kg CO₂
+                                                    </p>
+                                                    <p>Most Frequent: {{ mostFrequentStats?.meals.mostFrequent }}
+                                                    </p>
+                                                    <p>Total for Most Frequent ({{
+                                                        mostFrequentStats?.meals.mostFrequent }}):
+                                                        {{ mostFrequentStats?.meals.mostFrequentTotal }} kg CO₂
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="card shadow-sm mt-4 mb-4 border-total-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p><strong>Category with the Highest Emissions</strong>:</p>
+                                                        <a><i class="fa-solid fa-calculator fa-2xl"
+                                                                style="color: #78B3CE;"></i></a>
+                                                    </div>
+                                                    <p class="total-highest-emissions"> {{ maxEmissionsCategory }}</p>
+                                                    <p>Total Emissions for this Category: </p>
+                                                    <p class="total-highest-emissions">{{ maxEmissionsValue }} kg CO₂
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="card shadow-sm">
+                                                <div class="card-body">
+                                                    <p>
+                                                        In the pursuit of reducing our carbon footprint, understanding
+                                                        the
+                                                        sources of emissions is crucial. By analyzing the activities
+                                                        related to
+                                                        transportation, energy usage, and diet, we can gain valuable
+                                                        insights
+                                                        into which areas contribute the most to greenhouse gas
+                                                        emissions. This
+                                                        breakdown provides a closer look at how different factors—such
+                                                        as the
+                                                        modes of transportation we use, the energy sources we rely on,
+                                                        and the
+                                                        meals we consume—contribute to our overall emissions.
+                                                    </p>
+
+                                                    <p><strong>Transportation Emissions:</strong></p>
+                                                    <p>
+                                                        The most frequent transportation mode contributing to carbon
+                                                        emissions
+                                                        is <strong>{{
+                                                            mostFrequentStats?.transportationModes.mostFrequent
+                                                            }}</strong>, with a total emission of <strong>{{
+                                                            mostFrequentStats?.transportationModes.total }} kg
+                                                            CO₂</strong>.
+                                                        The total emissions from the most frequent transportation mode
+                                                        alone
+                                                        amount to <strong>{{
+                                                            mostFrequentStats?.transportationModes.mostFrequentTotal }}
+                                                            kg
+                                                            CO₂</strong>.
+                                                        This shows how even seemingly small choices, such as the mode of
+                                                        transport, can have a significant impact on our overall
+                                                        emissions.
+                                                    </p>
+
+                                                    <p><strong>Energy Emissions:</strong></p>
+                                                    <p>
+                                                        When it comes to energy consumption, the most frequent type is
+                                                        <strong>{{ mostFrequentStats?.energyUsage.mostFrequent
+                                                            }}</strong>.
+                                                        This category contributes a total of <strong>{{
+                                                            mostFrequentStats?.energyUsage.total }} kg CO₂</strong> in
+                                                        emissions, and the most frequent energy source contributes
+                                                        <strong>{{
+                                                            mostFrequentStats?.energyUsage.mostFrequentTotal }} kg
+                                                            CO₂</strong>
+                                                        by itself.
+                                                        This highlights the importance of the energy sources we use
+                                                        daily and
+                                                        the potential for cleaner, renewable alternatives.
+                                                    </p>
+
+                                                    <p><strong>Diet Emissions:</strong></p>
+                                                    <p>
+                                                        For diet-related emissions, the most frequent meal type is
+                                                        <strong>{{
+                                                            mostFrequentStats?.meals.mostFrequent }}</strong>.
+                                                        The total emissions from all meals amount to <strong>{{
+                                                            mostFrequentStats?.meals.total }} kg CO₂</strong>, and the
+                                                        most
+                                                        frequent meal type alone contributes <strong>{{
+                                                            mostFrequentStats?.meals.mostFrequentTotal }} kg
+                                                            CO₂</strong>.
+                                                        This serves as a reminder that our food choices, such as the
+                                                        type of
+                                                        diet we follow, also play a vital role in our environmental
+                                                        impact.
+                                                    </p>
+
+                                                    <p><strong>Overall Category Emissions:</strong></p>
+                                                    <p>
+                                                        Of all the categories, the one with the highest emissions is
+                                                        <strong>{{
+                                                            maxEmissionsCategory }}</strong>,
+                                                        with a total emission of <strong>{{ maxEmissionsValue }} kg
+                                                            CO₂</strong>.
+                                                        This finding underscores the importance of focusing our efforts
+                                                        on this
+                                                        category in order to make meaningful reductions in our carbon
+                                                        footprint.
+                                                        By understanding these patterns, we can make more informed
+                                                        decisions to
+                                                        lower our emissions and work toward a more sustainable future.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-4">
+                                    <p>Recommended Activities</p>
+                                    <div class="swiper-container container1">
+                                        <div class="swiper-wrapper">
+                                            <!-- Loop through goals using *ngFor -->
+                                            <div class="swiper-slide col-6" *ngFor="let goal of goals" [hidden]="goal.tags !== maxEmissionsCategory">
+                                                <div class="card goal-card mb-3 border-left-primary">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img [src]="(goal.pictures?.length > 0 ? getImageUrl(goal.pictures[0]?.data) : getErrorImageUrl())"
+                                                                class="goal-card-img" alt="{{ goal.title }} Image" />
+                                                        </div>
+                                                        <div class="col-md-8 pb-2">
+                                                            <div class="card-body">
+                                                                <p class="card-title text-clamp-2 goal-card-title">{{ goal.title }}</p>
+                                                                <div class="d-flex justify-content-start">
+                                                                    <p class="tag-button me-1">{{ goal.tags }}</p>
+                                                                </div>
+                                                                <p class="card-text text-clamp-3">{{ goal.description }}</p>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <p *ngIf="getUserProgress(goal) === 0" class="available-button me-1" style="margin-bottom: 9vh;">Available</p>
+                                                                    <div *ngIf="getUserProgress(goal) > 0" class="d-flex align-items-center justify-content-end mb-2">
+                                                                        <div class="progress" style="width: 100%; height: 20px; margin-right: 10px;">
+                                                                            <div class="progress-bar bg-success" role="progressbar"
+                                                                                [style.width]="getUserProgress(goal) + '%'" [attr.aria-valuenow]="getUserProgress(goal)"
+                                                                                aria-valuemin="0" aria-valuemax="100">
+                                                                                {{ getUserProgress(goal) }}%
+                                                                            </div>
+                                                                        </div>
+                                                                        <p id="progress-text" class="h4 text-center pb-4 mb-2">{{ getUserProgress(goal) }}%</p>
+                                                                        <p class="inprogress-button ms-2 mb-2">In progress</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                                <a [routerLink]="['/goal-activity-detail-page/', goal._id]"
+                                                                    class="btn btn-outline-primary float-end me-1 mb-2">Read
+                                                                    More</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!-- </div> -->
+                                        <!-- Pagination -->
+                                        <div class="swiper-pagination swiper-pagination1"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mt-4">
+                                    <p>Recommended Educational Content</p>
+                                    <div class="swiper-container container2">
+                                        <div class="swiper-wrapper">
+                                            <!-- Loop through all educational content -->
+                                            <div class="swiper-slide col-4"
+                                                *ngFor="let content of educationalContentList" [hidden]="content.tags !== maxEmissionsCategory">
+                                                <div class="card shadow-sm position-relative">
+                                                    <p
+                                                        class="badge-article position-absolute top-0 end-0 bg-primary text-white m-2 px-2 py-1">
+                                                        {{ content.category }}
+                                                    </p>
+                                                    <img [src]="(content.pictures?.length > 0 ? getImageUrl(content.pictures[0]?.data) : getErrorImageUrl())"
+                                                        class="img-fluid article-card-img"
+                                                        alt="{{ content.title }} Image" />
+                                                    <div class="card-body">
+                                                        <p class="card-title article-card-title">{{ content.title }}</p>
+                                                        <div class="d-flex justify-content-start">
+                                                            <p class="tag-button me-1">{{ content.tags }}</p>
+                                                        </div>
+                                                        <p class="card-text text-clamp-3">{{ content.description }}</p>
+                                                    </div>
+                                                    <div class="card-footer border-0 bg-white">
+                                                        <a [routerLink]="'/educational-content-detail-page/' + content._id" class="btn btn-outline-primary float-end">Read More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Pagination -->
+                                        <div class="swiper-pagination swiper-pagination2"></div>
+                                        <!-- Navigation -->
+                                        <!-- <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div> -->
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Activity Modal -->
+                <div class="modal fade" id="uploadActivityModal" tabindex="-1"
+                    aria-labelledby="uploadActivityModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="uploadActivityModalLabel"><i
+                                        class="fa-solid fa-bars-progress"></i> Upload Activity Log</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <section class="container">
+                                    <form id="activityLogForm" (ngSubmit)="submitActivity()" class="form">
+                                        <!-- Current Date -->
+                                        <div class="mb-3">
+                                            <label for="currentDate" class="form-label">
+                                                <i class="fa-solid fa-calendar-days"></i> Current Date
+                                            </label>
+                                            <input type="date" class="form-control" id="currentDate"
+                                                [(ngModel)]="activityLog.date" name="currentDate" required />
+                                        </div>
+
+                                        <!-- Vehicle Section -->
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-car"></i> Vehicle
+                                                Information</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="vehicleType" class="form-select"
+                                                        [(ngModel)]="activityLog.transportationModes" name="vehicleType"
+                                                        required>
+                                                        <option hidden value="">Select Vehicle Type</option>
+                                                        <option value="Car">Car</option>
+                                                        <option value="Motorcycle">Motorcycle</option>
+                                                        <option value="Public Transportation">Public Transportation
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="distanceTraveled"
+                                                        [(ngModel)]="activityLog.distanceTraveled"
+                                                        name="distanceTraveled" placeholder="Distance Traveled (KM)"
+                                                        required />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="fuelType" class="form-select"
+                                                        [(ngModel)]="activityLog.fuelType" name="fuelType" required>
+                                                        <option hidden value="">Select Fuel Type</option>
+                                                        <option>Pertamax</option>
+                                                        <option>Pertalite</option>
+                                                        <option>Solar</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="fuelConsumption"
+                                                        [(ngModel)]="activityLog.fuelConsumption" name="fuelConsumption"
+                                                        placeholder="Fuel Consumption (L)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Energy Section -->
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-seedling"></i> Energy
+                                                Source</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="energySource" class="form-select"
+                                                        [(ngModel)]="activityLog.energySource" name="energySource"
+                                                        required>
+                                                        <option hidden value="">Select Energy Source</option>
+                                                        <option>Hydropower</option>
+                                                        <option>Coals</option>
+                                                        <option>Natural Gas</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="energyConsumption"
+                                                        [(ngModel)]="activityLog.energyConsumption"
+                                                        name="energyConsumption" placeholder="Energy Consumption (KWH)"
+                                                        required />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Meals Section -->
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-utensils"></i> Consumed
+                                                Meals</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="foodType" class="form-select"
+                                                        [(ngModel)]="activityLog.foodType" name="foodType" required>
+                                                        <option hidden value="">Select Food Type</option>
+                                                        <option>Plant-based</option>
+                                                        <option>Animal-based</option>
+                                                        <option>Processed food</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="foodQuantity"
+                                                        [(ngModel)]="activityLog.foodQuantity" name="foodQuantity"
+                                                        placeholder="Food Quantity (KG)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"
+                                            id="submitActivityLog">Submit</button>
+                                    </form>
+                                </section>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Activity Modal End -->
+
+            </div>
+            <!-- Page content end -->
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>

@@ -1,0 +1,117 @@
+/* CHAT PAGE */
+
+.nav-pills .badge {
+    background-color: white; /* Warna latar belakang badge */
+    color: #78B3CE; /* Warna teks badge */
+    font-size: 0.8rem; /* Ukuran font badge */
+    font-weight: bold; /* Teks tebal */
+    border-radius: 50%; /* Membuat badge berbentuk lingkaran */
+    padding: 5px 8px; /* Memberi jarak dalam badge */
+    line-height: 1; /* Line height untuk teks di dalam badge */
+    margin-left: 10px; /* Memberi jarak dari teks/tab */
+}
+
+.btn-friend-list {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .friend-list-ul{
+        display: none;
+    }
+    .btn-friend-list {
+        display: block !important;
+    }
+    
+}
+
+.friend-head{
+    height: 7vh;
+    background-color: #78B3CE;
+    
+}
+.chat-li li{
+    list-style: none;
+}
+.chat-li li a{
+    color: #78B3CE;
+    text-decoration: none;
+}
+.chat-li li a:hover{
+    color: white;
+}
+.chat-li .nav-item{
+    transition: background-color 0.3s ease, color 0.3s ease; /* Tambahkan transisi agar efek lebih halus */
+}
+.chat-li .nav-item:hover{
+    background-color: #78B3CE;
+    color: white;
+}
+.chat-li .nav-link.active{
+    background-color: #78B3CE !important;
+        color: white !important;
+}
+
+.chat-scroll{
+    height: 75vh;
+    overflow-y: auto;
+}
+.list-scroll{
+    height: 90vh;
+    overflow-y: auto;
+}
+@media screen and (max-width: 768px) {
+    .chat-scroll{
+        height: 73vh;
+    }
+}
+
+.friendlist-logo i{
+    font-size: 30px;
+    color: #78B3CE;
+}
+.friendlist-logo:hover i{
+    color: #fff;
+    background-color: #78B3CE;
+
+}
+
+/* Nama Chat */
+.chat-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Bubble Chat Styles */
+.bubble {
+    max-width: 100%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bubble-left {
+    background-color: #f1f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.bubble-right {
+    background-color: #007bff;
+    color: #ffffff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 15px;
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* CHAT PAGE END */

@@ -1,0 +1,377 @@
+<!-- 1. User Profile + Settings-->
+
+<!-- 2. Daily Activity log + upload -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website Title</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="index.html"><img src="assets/images/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.html">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="community.html">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="actions.html">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+            
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page.html">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">3</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="badge">5</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+            
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="profile.html">
+                                    <img src="assets/images/Cat03.jpg" class="circle-image me-2" alt="Circle Image">
+                                    <span>User</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>You have 3 new messages</li>
+                                <li>Your profile has been updated</li>
+                                <li>Meeting scheduled at 3 PM</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NAVBAR END -->
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row p-0">
+                    <div class="col-md-9 bg-white" style="min-height: 90vh;">
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <a href="#" class="back-arrow-button"><i class="fas fa-arrow-left fa-xl ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-3 text-center">
+                                <img src="assets/images/Cat03.jpg" class="img-fluid profile-image" alt="User Picture">
+                            </div>
+                            <div class="col-9">
+                                <div class="row pe-4">
+                                    <div class="col-12">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-12">
+                                                <p class="profile-username">Username</p>
+                                                <p class="profile-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                                                                     
+                                </div>
+                            </div>
+                            <div class="col-3">
+
+                            </div>
+                            <div class="col-12 col-sm-9">
+                                <div class="d-flex justify-content-start">
+                                    <p class="btn-commuting me-2 mb-2"><i class="fa-solid fa-car"></i> Commuting Methods</p>
+                                    <p class="btn-energy me-2 mb-2"><i class="fa-solid fa-seedling"></i> Energy Sources</p>
+                                    <p class="btn-diet me-2 mb-2"><i class="fa-solid fa-utensils"></i> Dietery Preferences</p>
+                                </div>   
+                            </div>
+
+                            <div class="col-12 text-end">
+                                <button class="btn btn-outline-primary me-2 mb-2 btn-sm"><i class="fa-solid fa-user-plus"></i> Add Friend</button>
+                            </div>                                             
+                        </div>
+                        <div class="row mt-2">
+                            <ul class="nav nav-tabs justify-content-center bg-white content-tab" id="profileTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="user-post-tab" data-bs-toggle="tab" data-bs-target="#user-post-tab-pane" type="button" role="tab" aria-controls="user-post-tab-pane"><i class="fa-solid fa-clipboard fa-2xl"></i></button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="user-achievement-tab" data-bs-toggle="tab" data-bs-target="#user-achievement-tab-pane" type="button" role="tab" aria-controls="user-achievement-tab-pane"><i class="fa-solid fa-trophy fa-2xl"></i></button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="profileTabContent">
+                                <div class="tab-pane fade show active" id="user-post-tab-pane" role="tabpanel" aria-labelledby="user-post-tab" tabindex="0">
+                                    
+                                    <div class="row" data-bs-toggle="modal" data-bs-target="#postModal">
+                                        <div class="col-12 mt-4">
+                                            
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                <p class="chat-name mb-0">User</p>
+                                                </a>
+                                            </div>                                               
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                </div>
+                                                <div class="post-images mt-1">
+                                                    <img src="assets/images/Cat03.jpg" class="img-fluid rounded-1" alt="Post Image">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 6 December 2024</p>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-heart"></i> <span>10</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>1</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="my-3">           
+
+                                </div>
+                                
+                                <!-- Achievement Tab Content -->
+                                <div class="tab-pane fade" id="user-achievement-tab-pane" role="tabpanel" aria-labelledby="user-achievement-tab" tabindex="0">
+                                    <div class="container mt-4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>Achievements</h5>
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="col-xl-6 mb-2 d-flex justify-content-center">
+                                            <div class="card goal-card mb-3 border-left-primary">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                    </div>
+                                                    <div class="col-md-8 pb-2">                                                                
+                                                        <div class="card-body">
+                                                            <p class="card-title goal-card-title">Card Title</p>
+                                                            <div class="d-flex justify-content-start">
+                                                                <p class="tag-button me-1">Tags</p>
+                                                            </div>
+                                                            <p class="card-text text-clamp-3">
+                                                                This is a wider card with supporting text below as a natural lead-in to
+                                                                additional content. This content is a little bit longer.
+                                                            </p>
+                                                            <div class="d-flex align-items-center justify-content-end mb-2">
+                                                                <!-- <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                    <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                                </div> -->
+                                                                <p class="completed-button mb-2 me-1">Completed</p>
+                                                                <p class="times-button mb-2">2 Times</p>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        
+                                    </div>
+                                </div>
+                                <!-- Achievement Tab Content End -->
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                   <div class="col-md-3">
+
+                   </div>
+                </div>
+
+                <!-- Post Modal -->
+                <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12 post-content pe-2">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                    <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                    <p class="chat-name mb-0">User</p>
+                                                </a>
+                                            </div>                                               
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                </div>
+                                                <div class="post-images mt-1">
+                                                    <img src="assets/images/Cat03.jpg" class="img-fluid rounded-1" alt="Post Image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 6 December 2024</p>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-heart"></i> <span>10</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>2</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <p>Comments</p>
+                                        </div>
+                                        <div class="col-md-12 post-comment">
+                                            <div>
+                                                <div class="d-flex align-items-center">
+                                                    <a class="d-flex align-items-center text-decoration-none" href="#" style="color: inherit;">
+                                                        <img src="assets/images/Cat03.jpg" class="circle-image mini-profile me-2" alt="Circle Image">
+                                                        <p class="chat-name mb-0">User</p>
+                                                    </a>
+                                                </div>                                               
+                                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                    <div class="post-space text-justify">
+                                                        <p>Lorem Ipsum is simply dummy text.</p>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <form class="d-flex align-items-center mt-3">
+                                                <input type="text" class="form-control me-2" placeholder="Write a comment..." aria-label="Comment">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Modal End -->
+
+                <!-- Upload Post Modal -->
+                <div class="modal fade" id="uploadPostModal" tabindex="-1" aria-labelledby="uploadPostModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="editProfileModalLabel">Upload Post</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Upload Image</label>
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Enter Text</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <form>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Post Modal End -->
+            
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="assets/chart.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/swiper.js"></script>
+
+</body>
+</html>

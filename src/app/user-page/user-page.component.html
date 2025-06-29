@@ -1,0 +1,402 @@
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="/"><img src="/assets/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/community-page">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/actions-page">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-3 mt-auto" (click)="logout()"
+                    routerLink="/logreg-page" style="color: black; font-weight: bold;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">{{ unreadMessageCount }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="user-profile-page">
+                                    <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                    ? getImageUrl(userData.profilePic[0].data) 
+                                    : getErrorImageUrl())" class="circle-image me-2"
+                                        alt="{{ userData.username }} Image" />
+                                    <span>{{ userData.username }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- NAVBAR END -->
+
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row p-0">
+                    <div class="col-md-9 bg-white" style="min-height: 90vh;">
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <a href="#" class="back-arrow-button"><i class="fas fa-arrow-left fa-xl ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-3 text-center">
+                                <div class="profile-image-container">
+                                    <img [src]="(userProfile.profilePic && userProfile.profilePic[0]?.data && userProfile.profilePic[0]?.contentType !== '' 
+                                    ? getImageUrl(userProfile.profilePic[0].data) 
+                                    : getErrorImageUrl())" class="profile-image"
+                                    alt="{{ userProfile.username }} Image" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-9">
+                                <div class="row pe-4">
+                                    <div class="col-12">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-12">
+                                                <p class="profile-username">{{userProfile.username}}</p>
+                                                <p class="profile-description">{{userProfile.bio}}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+
+                            </div>
+                            <div class="col-12 col-sm-9">
+                                <div class="d-flex justify-content-start">
+                                    <p class="btn-commuting me-2 mb-2"><i class="fa-solid fa-car"></i>
+                                        {{userProfile.commutingMethods}}</p>
+                                    <p class="btn-energy me-2 mb-2"><i class="fa-solid fa-seedling"></i>
+                                        {{userProfile.energySources}}</p>
+                                    <p class="btn-diet me-2 mb-2"><i class="fa-solid fa-utensils"></i>
+                                        {{userProfile.dietaryPreferences}}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-end">
+                                <button *ngIf="!isFriend(userProfile.username)"
+                                        (click)="addFriend(userProfile.username)"
+                                        class="btn btn-outline-primary me-2 mb-2 btn-sm">
+                                  <i class="fa-solid fa-user-plus"></i> Add Friend
+                                </button>
+                              
+                                <button *ngIf="isFriend(userProfile.username)"
+                                        class="btn btn-outline-secondary me-2 mb-2 btn-sm" disabled>
+                                  <i class="fa-solid fa-check"></i> Friended
+                                </button>
+                              </div>
+                              
+                        </div>
+                        <div class="row mt-2">
+                            <ul class="nav nav-tabs justify-content-center bg-white content-tab" id="profileTab"
+                                role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="user-post-tab" data-bs-toggle="tab"
+                                        data-bs-target="#user-post-tab-pane" type="button" role="tab"
+                                        aria-controls="user-post-tab-pane"><i
+                                            class="fa-solid fa-clipboard fa-2xl"></i></button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="user-achievement-tab" data-bs-toggle="tab"
+                                        data-bs-target="#user-achievement-tab-pane" type="button" role="tab"
+                                        aria-controls="user-achievement-tab-pane"><i
+                                            class="fa-solid fa-trophy fa-2xl"></i></button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="profileTabContent">
+                                <div class="tab-pane fade show active" id="user-post-tab-pane" role="tabpanel"
+                                    aria-labelledby="user-post-tab" tabindex="0">
+
+                                    <div class="row" *ngFor="let post of posts" (click)="openPostModal(post)">
+                                        <div class="col-12 mt-4" data-bs-toggle="modal" data-bs-target="#postModal">
+
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none" [routerLink]="['/user-page/', userProfile.username]"
+                                                    style="color: inherit;">
+                                                    <img [src]="(userProfile.profilePic && userProfile.profilePic[0]?.data && userProfile.profilePic[0]?.contentType !== '' 
+                                                    ? getImageUrl(userProfile.profilePic[0].data) 
+                                                    : getErrorImageUrl())" class="circle-image mini-profile me-2"
+                                                        alt="{{ userProfile.username }} Image" />
+                                                    <p class="chat-name mb-0">{{userProfile.username}}</p>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>{{userProfile.description}}</p>
+                                                </div>
+                                                <div class="post-images mt-1">
+                                                    <img [src]="(post.pictures && post.pictures[0]?.data && post.pictures[0]?.contentType !== '' 
+                                                    ? getImageUrl(post.pictures[0].data) 
+                                                    : getErrorImageUrl())" class="img-fluid rounded-1"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i
+                                                        class="fa-regular fa-calendar"></i> {{post.date |
+                                                    date: 'd MMMM yyyy'}}
+                                                </p>
+                                                <button type="button" class="btn post-button"
+                                                    (click)="onLike(post._id,userData.username, $event)">
+                                                    <i class="fa-regular fa-heart"></i> <span>
+                                                        {{post.like.length}}</span>
+                                                </button>
+                                                <button type="button" class="btn post-button"
+                                                    data-bs-toggle="modal" data-bs-target="#postModal">
+                                                    <i class="fa-regular fa-comment"></i> <span>
+                                                        {{post.comments.length}}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="my-3">
+
+                                </div>
+
+                                <!-- Achievement Tab Content -->
+                                <div class="tab-pane fade" id="user-achievement-tab-pane" role="tabpanel"
+                                    aria-labelledby="user-achievement-tab" tabindex="0">
+                                    <div class="container mt-4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>Achievements</h5>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-xl-6 mb-2"
+                                            *ngFor="let goal of goals">
+                                            <div class="d-flex justify-content-center">
+                                                <div *ngIf="isGoalValidForUser(goal)"
+                                                class="card goal-card mb-3 border-left-primary">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img [src]="(goal.pictures && goal.pictures[0]?.data && goal.pictures[0]?.contentType !== '' 
+                                                ? getImageUrl(goal.pictures[0].data) 
+                                                : getErrorImageUrl())" class="goal-card-img h-100" />
+                                                        </div>
+                                                        <div class="col-md-8 pb-2">
+                                                            <div class="card-body">
+                                                                <p class="card-title goal-card-title">
+                                                                    {{goal.title}}</p>
+                                                                <div class="d-flex justify-content-start">
+                                                                    <p class="tag-button me-1">{{goal.tags}}</p>
+                                                                </div>
+                                                                <p class="card-text text-clamp-3">
+                                                                    {{goal.description}}
+                                                                </p>
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-end mb-2">
+                                                                    <p class="completed-button mb-2 me-1">
+                                                                        Completed</p>
+                                                                    <p class="times-button mb-2">
+                                                                        {{ getUserRepetition(goal) }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <!-- Achievement Tab Content End -->
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+
+                <!-- Post Modal -->
+                <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12 post-content pe-2">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none"
+                                                    style="color: inherit;">
+                                                    <img [src]="(userProfile.profilePic && userProfile.profilePic[0]?.data && userProfile.profilePic[0]?.contentType !== '' 
+                                                    ? getImageUrl(userProfile.profilePic[0].data) 
+                                                    : getErrorImageUrl())" class="circle-image mini-profile me-2"
+                                                        alt="{{ userProfile.username }} Image"
+                                                        >
+                                                    <p class="chat-name mb-0">{{activePost.username}}</p>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>{{ activePost.description }}</p>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <img [src]="(activePost.pictures && activePost.pictures[0]?.data && activePost.pictures[0]?.contentType !== '' 
+                                                    ? getImageUrl(activePost.pictures[0].data) 
+                                                    : getErrorImageUrl())" class="post-modal-images rounded-1"
+                                                        alt="{{ activePost.username }} Image"
+                                                       />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i>
+                                                    {{activePost.date | date: 'd MMMM yyyy'}}</p>
+                                                <button type="button" class="btn post-button"  (click)="onLike(activePost._id,userData.username, $event)"> 
+                                                    <i class="fa-regular fa-heart"></i> <span> {{activePost.like.length
+                                                        }}</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>
+                                                        {{activePost.commentCount}}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <p>Comments</p>
+                                        </div>
+                                        <div class="col-md-12 post-comment">
+                                            <div *ngFor="let commenting of activePost.comments">
+                                                <div class="d-flex align-items-center">
+                                                    <a class="d-flex align-items-center text-decoration-none"
+                                                        [routerLink]="['/user-page/', commenting.username]"
+                                                        style="color: inherit;">
+                                                        <img [src]="getProfilePic(commenting.username)"
+                                                            class="circle-image mini-profile me-2"
+                                                            alt="{{ commenting.username }} Image"
+                                                            />
+                                                        <p class="chat-name mb-0">{{commenting.username}}</p>
+                                                    </a>
+                                                </div>
+                                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                    <div class="post-space text-justify">
+                                                        {{commenting.comment}}
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                        </div>
+                                        <form class="d-flex align-items-center mt-3"
+                                            (ngSubmit)="onAddComment(activePost._id, userData.username, newComment)">
+                                            <input type="text" class="form-control me-2"
+                                                placeholder="Write a comment..." aria-label="Comment"
+                                                [(ngModel)]="newComment" name="commentInput">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa-solid fa-paper-plane"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Modal End -->
+
+                <!-- Upload Post Modal -->
+                <div class="modal fade" id="uploadPostModal" tabindex="-1" aria-labelledby="uploadPostModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="editProfileModalLabel">Upload Post</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Upload Image</label>
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Enter
+                                                Text</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <form>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Post Modal End -->
+
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>

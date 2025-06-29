@@ -1,0 +1,1058 @@
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="/"><img src="/assets/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/community-page">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/actions-page">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-3 mt-auto" (click)="logout()"
+                    routerLink="/logreg-page" style="color: black; font-weight: bold;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">{{ unreadMessageCount }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="user-profile-page">
+                                    <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                            ? getImageUrl(userData.profilePic[0].data) 
+                            : getErrorImageUrl())" class="circle-image me-2" alt="{{ userData.username }} Image" />
+                                    <span>{{ userData.username }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- NAVBAR END -->
+
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav nav-tabs bg-white content-tab" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="user-tab" data-bs-toggle="tab"
+                                data-bs-target="#user-tab-pane" type="button" role="tab"
+                                aria-controls="user-tab-pane">User Page</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="friendlist-tab" data-bs-toggle="tab"
+                                data-bs-target="#friendlist-tab-pane" type="button" role="tab"
+                                aria-controls="friendlist-tab-pane">Friend List</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="user-tab-pane" role="tabpanel"
+                            aria-labelledby="user-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-md-9 bg-white">
+                                    <div class="row pt-4">
+                                        <div class="col-3 text-center">
+                                            <div class="profile-image-container">
+                                                <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                                            ? getImageUrl(userData.profilePic[0].data) 
+                                                            : getErrorImageUrl())" 
+                                                     class="profile-image"
+                                                     alt="{{ userData.username }} Image"
+                                                     (error)="handleImageError($event, userData)" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-9">
+                                            <div class="row pe-4">
+                                                <div class="col-12">
+                                                    <div class="row d-flex align-items-center">
+                                                        <div class="col-10">
+                                                            <p class="profile-username">{{userData.username}}</p>
+                                                            <p class="profile-description">{{userData.bio}}</p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button class="btn" data-bs-toggle="modal"
+                                                                data-bs-target="#settingsModal"><i
+                                                                    class="fa-solid fa-gear fa-xl"
+                                                                    style="color: #608BC1;"></i></button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-12 col-sm-9">
+                                            <div class="d-flex justify-content-start">
+                                                <p class="btn-commuting me-2 mb-2"><i class="fa-solid fa-car"></i>
+                                                    {{userData.commutingMethods}}</p>
+                                                <p class="btn-energy me-2 mb-2"><i class="fa-solid fa-seedling"></i>
+                                                    {{userData.energySources}}</p>
+                                                <p class="btn-diet me-2 mb-2"><i class="fa-solid fa-utensils"></i>
+                                                    {{userData.dietaryPreferences}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-12 col-sm-9 text-end">
+                                            <label for="inputBio" class="form-label">
+                                                <i class="fa fa-calendar text-start"></i> Preferred Reminder
+                                            </label>
+                                            <select class="form-select" [(ngModel)]="userData.preferredReminder"
+                                                name="preferredReminder" (change)="updateUserProfile()">
+                                                <!-- Dynamically disable and display the database value -->
+                                                <option [value]="userData.preferredReminder" disabled selected>
+                                                    {{ userData.preferredReminder || 'Select Reminder' }}
+                                                </option>
+                                                <option value="Daily">Daily</option>
+                                                <option value="Weekly">Weekly</option>
+                                                <option value="Monthly">Monthly</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 text-end mt-2">
+                                            <button type="button" class="btn me-2" data-bs-toggle="modal"
+                                                data-bs-target="#uploadActivityModal" id="btn-post">
+                                                <i class="fa-solid fa-plus"></i> Upload Activity Log
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <ul class="nav nav-tabs justify-content-center bg-white content-tab"
+                                            id="profileTab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="user-post-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#user-post-tab-pane" type="button" role="tab"
+                                                    aria-controls="user-post-tab-pane"><i
+                                                        class="fa-solid fa-clipboard fa-2xl"></i></button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="user-achievement-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#user-achievement-tab-pane" type="button" role="tab"
+                                                    aria-controls="user-achievement-tab-pane"><i
+                                                        class="fa-solid fa-trophy fa-2xl"></i></button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="profileTabContent">
+                                            <!-- Post Tab Content -->
+                                            <div class="tab-pane fade show active" id="user-post-tab-pane"
+                                                role="tabpanel" aria-labelledby="user-post-tab" tabindex="0">
+
+                                                <div class="row" *ngFor="let post of posts"
+                                                    (click)="openPostModal(post)">
+                                                    <div class="col-12 mt-4">
+
+                                                        <div class="d-flex align-items-center">
+                                                            <a class="d-flex align-items-center text-decoration-none"
+                                                                style="color: inherit;">
+                                                                <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                                                    ? getImageUrl(userData.profilePic[0].data) 
+                                                                    : getErrorImageUrl())"
+                                                                    class="circle-image mini-profile me-2"
+                                                                    alt="{{ userData.username }} Image"
+                                                                    (error)="handleImageError($event, userData)" />
+                                                                <p class="chat-name mb-0">{{post.username}}</p>
+                                                            </a>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-grow-1"
+                                                            data-bs-toggle="modal" data-bs-target="#postModal"
+                                                            style="padding-left: 6vh;">
+                                                            <div class="post-space text-justify">
+                                                                <p>{{post.description}}</p>
+                                                            </div>
+                                                            <div class="post-images mt-1">
+                                                                <img [src]="(post.pictures && post.pictures[0]?.data && post.pictures[0]?.contentType !== '' 
+                                                                    ? getImageUrl(post.pictures[0].data) 
+                                                                    : getErrorImageUrl())" class="img-fluid rounded-1"
+                                                                    alt="{{ post.username }} Image"
+                                                                    (error)="handleImageError($event, post)" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-12 mt-2">
+                                                        <div class="d-flex justify-content-end">
+                                                            <p class="post-date pt-3 me-4"><i
+                                                                    class="fa-regular fa-calendar"></i> {{post.date |
+                                                                date: 'd MMMM yyyy'}}
+                                                            </p>
+                                                            <button type="button" class="btn post-button"
+                                                                (click)="onLike(post._id,userData.username, $event)">
+                                                                <i class="fa-regular fa-heart"></i> <span>
+                                                                    {{post.like.length}}</span>
+                                                            </button>
+                                                            <button type="button" class="btn post-button"
+                                                                data-bs-toggle="modal" data-bs-target="#postModal">
+                                                                <i class="fa-regular fa-comment"></i> <span>
+                                                                    {{post.comments.length}}</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                            <!-- Post Tab Content End -->
+
+                                            <!-- Achievement Tab Content -->
+                                            <div class="tab-pane fade" id="user-achievement-tab-pane" role="tabpanel"
+                                                aria-labelledby="user-achievement-tab" tabindex="0">
+                                                <div class="container mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h5>Achievements</h5>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-xl-6 mb-2 d-flex justify-content-center"
+                                                        *ngFor="let goal of goals">
+                                                        <div *ngIf="isGoalValidForUser(goal)"
+                                                            class="card goal-card mb-3 border-left-primary">
+                                                            <div class="row g-0">
+                                                                <div class="col-md-4">
+                                                                    <img [src]="(goal.pictures && goal.pictures[0]?.data && goal.pictures[0]?.contentType !== '' 
+                                                        ? getImageUrl(goal.pictures[0].data) 
+                                                        : getErrorImageUrl())" class="goal-card-img" />
+                                                                </div>
+                                                                <div class="col-md-8 pb-2">
+                                                                    <div class="card-body">
+                                                                        <p class="card-title goal-card-title">
+                                                                            {{goal.title}}</p>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <p class="tag-button me-1">{{goal.tags}}</p>
+                                                                        </div>
+                                                                        <p class="card-text text-clamp-3">
+                                                                            {{goal.description}}
+                                                                        </p>
+                                                                        <div
+                                                                            class="d-flex align-items-center justify-content-end" style="height: 10vh;">
+                                                                            <p class="completed-button mb-2 me-1">
+                                                                                Completed</p>
+                                                                            <p class="times-button mb-2">
+                                                                                {{ getUserRepetition(goal) }}
+                                                                            </p>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                    <div class="card-footer border-0 bg-white">
+                                                                        <button (click)="openAchievementModal(goal)"
+                                                                            class="btn btn-outline-primary float-end me-1"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#uploadAchievementModal"><i
+                                                                                class="fa-solid fa-share"></i>
+                                                                            Share</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                            <!-- Achievement Tab Content End -->
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Friend List Tab Content -->
+                        <div class="tab-pane fade" id="friendlist-tab-pane" role="tabpanel"
+                            aria-labelledby="friendlist-tab" tabindex="0">
+                            <div class="row bg-white">
+                                <div class="col-md-9">
+                                    <div class="row pt-4">
+                                        <div class="col-12">
+                                            <h5 class="mb-3">Friend List</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form class="d-flex" role="search">
+                                                <input class="form-control me-2" type="search"
+                                                    placeholder="Search by username" aria-label="Search">
+                                                <button class="btn btn-outline-secondary" type="submit"><i
+                                                        class="fa-solid fa-magnifying-glass"></i></button>
+                                                <button type="button" class="btn btn-primary ms-2"
+                                                    data-bs-toggle="modal" data-bs-target="#addFriendModal">
+                                                    <i class="fa-solid fa-user-plus"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row align-items-center border-bottom py-3 mt-2"
+                                        *ngFor="let friend of userData?.friendList">
+                                        <div class="col-auto">
+                                            <img [src]="getProfilePic(friend.username)" class="mini-profile"
+                                                alt="{{ friend.username }} Image"
+                                                (error)="handleImageError($event, friend)" />
+                                        </div>
+                                        <div class="col">
+                                            <p class="mb-0">{{friend.username}}</p>
+                                            <!-- <small class="text-muted">Active 5m ago</small> -->
+                                        </div>
+                                        <div class="col-auto text-end">
+                                            <button [routerLink]="'/chat-page/'" type="button" class="btn btn-sm btn-outline-secondary mt-1 me-1">
+                                                <i class="fa-solid fa-message"></i> Chat
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger mt-1 me-1"
+                                                (click)="removeFriend(friend.username)">
+                                                <i class="fa-solid fa-user-minus"></i> Remove
+                                            </button>
+                                            <a class="btn btn-sm btn-outline-primary me-1 mt-1"
+                                                [routerLink]="['/user-page/', friend.username]">
+                                                <i class="fa-solid fa-arrow-right-to-bracket"></i> Visit
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Friend List Tab Content End -->
+                    </div>
+                </div>
+
+                <!-- Edit Profile Modal -->
+                <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="settingsModalLabel">Settings</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="nav nav-tabs justify-content-center bg-white content-tab" id="myTab"
+                                    role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab"
+                                            data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                            aria-controls="profile-tab-pane" aria-selected="true">Profile</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="details-tab" data-bs-toggle="tab"
+                                            data-bs-target="#details-tab-pane" type="button" role="tab"
+                                            aria-controls="details-tab-pane" aria-selected="false">Details</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="logout-tab" data-bs-toggle="tab"
+                                            data-bs-target="#logout-tab-pane" type="button" role="tab"
+                                            aria-controls="logout-tab-pane" aria-selected="false">Logout</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel"
+                                        aria-labelledby="profile-tab" tabindex="0">
+                                        <p class="text-center mt-4">Change your profile</p>
+                                        <form (ngSubmit)="onSubmit()" class="row g-3">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="profile-image-container">
+                                                            <!-- Display either the profile picture or a fallback image -->
+                                                            <img [src]="imagePreview || (userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                                            ? getImageUrl(userData.profilePic[0].data) 
+                                                            : getErrorImageUrl())" class="profile-image"
+                                                                alt="{{ userData.username }} Image"
+                                                                (error)="handleImageError($event, userData)" />
+                                                        </div>
+                                                            
+                                                    </div>
+                                                    <div class="col-md-8 mt-4">
+                                                        <div class="mb-3">
+                                                            <label for="formFile" class="form-label">Change Profile
+                                                                Picture</label>
+                                                            <input type="file" (change)="onFileChange($event)"
+                                                                class="form-control" accept="image/*" />
+                                                            <!-- Optional: Show a remove button if an image has been selected -->
+                                                            <button *ngIf="imagePreview" class="btn btn-danger mt-2"
+                                                                (click)="imagePreview = null; userData.profilePic = null;">
+                                                                Remove Image
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputUsername" class="form-label">Change Username</label>
+                                                <input type="text" class="form-control" id="inputUsername"
+                                                    [(ngModel)]="userData.username" name="username"
+                                                    placeholder="Username">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label">Bio</label>
+                                                <textarea class="form-control" id="inputBio" [(ngModel)]="userData.bio"
+                                                    name="bio" rows="3"></textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label"><i class="fa-solid fa-car"></i>
+                                                    Commuting Methods</label>
+                                                <select class="form-select" [(ngModel)]="userData.commutingMethods"
+                                                    name="commutingMethods">
+                                                    <option value="" disabled selected>Select Your Commuting Methods
+                                                    </option>
+                                                    <option value="Cars">Cars</option>
+                                                    <option value="Motorcycles">Motorcycles</option>
+                                                    <option value="Public Transportation">Public Transportation</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label"><i
+                                                        class="fa-solid fa-seedling"></i> Energy Sources</label>
+                                                <select class="form-select" [(ngModel)]="userData.energySources"
+                                                    name="energySources">
+                                                    <option value="" disabled selected>Select Your Energy</option>
+                                                    <option value="Hydropower">Hydropower</option>
+                                                    <option value="Natural Gas">Natural Gas</option>
+                                                    <option value="Coal">Coal</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label"><i
+                                                        class="fa-solid fa-utensils"></i> Dietery Preferences</label>
+                                                <select class="form-select" [(ngModel)]="userData.dietaryPreferences"
+                                                    name="dietaryPreferences">
+                                                    <option value="" disabled selected>Select Your Diet</option>
+                                                    <option value="Plant-Based">Plant-Based</option>
+                                                    <option value="Animal-Based">Animal-Based</option>
+                                                    <option value="Processed-Food">Processed-Food</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="inputBio" class="form-label"><i class="fa fa-calendar"></i>
+                                                    Preferred Reminder</label>
+                                                <select class="form-select" [(ngModel)]="userData.preferredReminder"
+                                                    name="preferredReminder">
+                                                    <!-- Default placeholder option -->
+                                                    <option value="" disabled selected>Select Reminder</option>
+                                                    <option value="Daily">Daily</option>
+                                                    <option value="Weekly">Weekly</option>
+                                                    <option value="Monthly">Monthly</option>
+                                                </select>
+                                            </div>
+
+                                            <hr class="my-3">
+                                            <p>Account & Security</p>
+                                            <div class="col-md-12">
+                                                <label for="inputPassword" class="form-label">Change Password</label>
+                                                <input type="password" class="form-control" id="inputPassword"
+                                                    [(ngModel)]="userData.password" name="password"
+                                                    placeholder="Password">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="details-tab-pane" role="tabpanel"
+                                        aria-labelledby="details-tab" tabindex="0">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="text-center mt-4">Profile Details</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title">Username</p>
+                                                <p class="details-info">{{userData.username}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title">Contact</p>
+                                                <p class="details-info">{{userData.phone}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title">Email</p>
+                                                <p class="details-info">{{userData.email}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title"><i class="fa-solid fa-car"></i> Commuting
+                                                    Methods</p>
+                                                <p class="details-info">{{userData.commutingMethods}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title"><i class="fa-solid fa-seedling"></i> Energy
+                                                    Sources</p>
+                                                <p class="details-info">{{userData.energySources}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="details-title"><i class="fa-solid fa-utensils"></i> Diet
+                                                    Preferences</p>
+                                                <p class="details-info">{{userData.dietaryPreferences}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="logout-tab-pane" role="tabpanel"
+                                        aria-labelledby="logout-tab" tabindex="0">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="text-center mt-4">Are You Sure Want To Logout?</p>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <button type="button" class="btn btn-danger">Logout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Profile Modal End -->
+
+                <!-- Post Modal -->
+                <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12 post-content pe-2">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none"
+                                                    style="color: inherit;">
+                                                    <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                                    ? getImageUrl(userData.profilePic[0].data) 
+                                                    : getErrorImageUrl())" class="circle-image mini-profile me-2"
+                                                        alt="{{ userData.username }} Image"
+                                                        (error)="handleImageError($event, userData)" />
+                                                    <p class="chat-name mb-0">{{activePost.username}}</p>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>{{ activePost.description }}</p>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <img [src]="(activePost.pictures && activePost.pictures[0]?.data && activePost.pictures[0]?.contentType !== '' 
+                                                    ? getImageUrl(activePost.pictures[0].data) 
+                                                    : getErrorImageUrl())" class="post-modal-images rounded-1"
+                                                        alt="{{ activePost.username }} Image"
+                                                        (error)="handleImageError($event, activePost)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i>
+                                                    {{activePost.date | date: 'd MMMM yyyy'}}</p>
+                                                <button type="button" class="btn post-button"  (click)="onLike(activePost._id,userData.username, $event)"> 
+                                                    <i class="fa-regular fa-heart"></i> <span> {{activePost.like.length
+                                                        }}</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>
+                                                        {{activePost.commentCount}}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <p>Comments</p>
+                                        </div>
+                                        <div class="col-md-12 post-comment">
+                                            <div *ngFor="let commenting of activePost.comments">
+                                                <div class="d-flex align-items-center">
+                                                    <a class="d-flex align-items-center text-decoration-none"
+                                                        [routerLink]="['/user-page/', commenting.username]"
+                                                        style="color: inherit;">
+                                                        <img [src]="getProfilePicComment(commenting.username)"
+                                                            class="circle-image mini-profile me-2"
+                                                            alt="{{ commenting.username }} Image"
+                                                            (error)="handleImageError($event, commenting)" />
+                                                        <p class="chat-name mb-0">{{commenting.username}}</p>
+                                                    </a>
+                                                </div>
+                                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                    <div class="post-space text-justify">
+                                                        {{commenting.comment}}
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                        </div>
+                                        <form class="d-flex align-items-center mt-3"
+                                            (ngSubmit)="onAddComment(activePost._id, userData.username, newComment)">
+                                            <input type="text" class="form-control me-2"
+                                                placeholder="Write a comment..." aria-label="Comment"
+                                                [(ngModel)]="newComment" name="commentInput">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa-solid fa-paper-plane"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Modal End -->
+
+                <!-- Post Achievement Modal -->
+                <div class="modal fade" id="postAchievementModal" tabindex="-1"
+                    aria-labelledby="postAchievementModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12 post-content pe-2">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none" href="#"
+                                                    style="color: inherit;">
+                                                    <img src="assets/Cat03.jpg" class="circle-image mini-profile me-2"
+                                                        alt="Circle Image">
+                                                    <p class="chat-name mb-0">User</p>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    <p>Congratulations! This activity has been successfully completed 2
+                                                        times. Keep up the excellent progress and aim for even greater
+                                                        accomplishments!</p>
+                                                </div>
+                                                <div class="card goal-card mb-3 border-left-primary">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img src="assets/Group 1.png"
+                                                                class="img-fluid h-100 goal-card" alt="#">
+                                                        </div>
+                                                        <div class="col-md-8 pb-2">
+                                                            <div class="card-body">
+                                                                <p class="card-title goal-card-title">Card Title</p>
+                                                                <div class="d-flex justify-content-start">
+                                                                    <p class="tag-button me-1">Tags</p>
+                                                                </div>
+                                                                <p class="card-text text-clamp-3">
+                                                                    This is a wider card with supporting text below as a
+                                                                    natural lead-in to
+                                                                    additional content. This content is a little bit
+                                                                    longer.
+                                                                </p>
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-end mb-2">
+                                                                    <!-- <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                        <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                                    </div> -->
+                                                                    <p class="completed-button mb-2 me-1">Completed</p>
+                                                                    <p class="times-button mb-2">2 Times</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="d-flex justify-content-end">
+                                                <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 6
+                                                    December 2024</p>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-heart"></i> <span>10</span>
+                                                </button>
+                                                <button type="button" class="btn post-button">
+                                                    <i class="fa-regular fa-comment"></i> <span>2</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <p>Comments</p>
+                                        </div>
+                                        <div class="col-md-12 post-comment">
+                                            <div>
+                                                <div class="d-flex align-items-center">
+                                                    <a class="d-flex align-items-center text-decoration-none" href="#"
+                                                        style="color: inherit;">
+                                                        <img src="assets/Cat03.jpg"
+                                                            class="circle-image mini-profile me-2" alt="Circle Image">
+                                                        <p class="chat-name mb-0">User</p>
+                                                    </a>
+                                                </div>
+                                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                    <div class="post-space text-justify">
+                                                        <p>Lorem Ipsum is simply dummy text.</p>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <form class="d-flex align-items-center mt-3">
+                                                <input type="text" class="form-control me-2"
+                                                    placeholder="Write a comment..." aria-label="Comment">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Achievement Modal End -->
+
+                <!-- Upload Post Modal -->
+                <div class="modal fade" id="uploadPostModal" tabindex="-1" aria-labelledby="uploadPostModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title">Upload Post</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- Image Preview -->
+                                        <div class="mb-3">
+                                            <div>
+                                                <img [src]="imagePreview" class="img-fluid add-picture"
+                                                alt="{{ createPostData.username || 'Preview Image' }}"
+                                                *ngIf="imagePreview" />
+                                                <p *ngIf="!imagePreview">No picture selected</p>
+                                            </div>                                           
+                                            <label for="formFile" class="form-label">Upload Image</label>
+                                            <input class="form-control" type="file" id="formFile"
+                                                (change)="onFileChangePost($event)" />
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Enter
+                                                Text</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                [(ngModel)]="createPostData.description" name="description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="createPost()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Upload Achievement Modal -->
+                <div class="modal fade" id="uploadAchievementModal" tabindex="-1"
+                    aria-labelledby="uploadAchievementModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header text-dark">
+                                <h5 class="modal-title" id="uploadAchievementModalLabel">Upload Achievement</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- Image Preview -->
+                                        <div class="mb-4 text-center">
+                                            <img [src]="imagePreview"
+                                                class="img-fluid rounded border"
+                                                alt="{{ activeAchievement?.title || 'Preview Image' }}"
+                                                *ngIf="imagePreview || activeAchievement?.pictures" />
+                                            <p *ngIf="!imagePreview" class="text-muted fst-italic">No picture selected
+                                            </p>                                            
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div class="mb-3">
+                                            <label for="postDescription" class="form-label fw-bold">
+                                               Achievement Description
+                                            </label>
+                                            <textarea class="form-control" id="postDescription" rows="4" readonly
+                                                [(ngModel)]="createPostData.description">
+                                            🎯 {{ activeAchievement?.title }}  
+                                            🏆 Congratulations! This achievement has been successfully completed {{ activeAchievement?.progression?.repetition || 0 }} times.  
+                                                Keep up the excellent progress and aim for even greater accomplishments! 🚀✨
+                                                </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" class="btn btn-primary" (click)="createAchievement()">
+                                    Post Achievement
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Achievement Modal End -->
+
+
+                <!-- Add Friend Modal -->
+                <div class="modal fade" id="addFriendModal" tabindex="-1" aria-labelledby="addFriendModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="addFriendModalLabel">Add Friend</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form (ngSubmit)="onSearch()" class="d-flex" role="search">
+                                            <input [(ngModel)]="searchQuery" name="searchQuery"
+                                                class="form-control me-2" type="search" placeholder="Search by username"
+                                                aria-label="Search" />
+                                            <button class="btn btn-outline-secondary" type="submit">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 add-friend-scroll">
+                                        <div *ngFor="let username of usernames">
+                                        <div
+                                            class="row align-items-center border-bottom py-3 mt-2" *ngIf="userData.username !== username.username">
+                                            <div class="col-auto">
+                                                <img [src]="(username.profilePic && username.profilePic[0]?.data && username.profilePic[0]?.contentType !== '' 
+                                                ? getImageUrl(username.profilePic[0].data) 
+                                                : getErrorImageUrl())" class="mini-profile"
+                                                    alt="{{ username.username }} Image"
+                                                    (error)="handleImageError($event, username)" />
+                                            </div>
+                                            <div class="col">
+                                                <p class="mb-0">{{ username.username }}</p>
+                                            </div>
+                                            <div class="col-auto text-end">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary mt-1 me-1"
+                                                    (click)="addFriend(username.username)">
+                                                    <i class="fa-solid fa-plus"></i> Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Friend Modal End -->
+
+                <!-- Upload Activity Modal -->
+                <div class="modal fade" id="uploadActivityModal" tabindex="-1"
+                    aria-labelledby="uploadActivityModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="uploadActivityModalLabel"><i
+                                        class="fa-solid fa-bars-progress"></i> Upload Activity Log</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <section class="container">
+                                    <form id="activityLogForm" (ngSubmit)="submitActivity()" class="form">
+                                        <!-- Current Date -->
+                                        <div class="mb-3">
+                                            <label for="currentDate" class="form-label">
+                                                <i class="fa-solid fa-calendar-days"></i> Current Date
+                                            </label>
+                                            <input type="date" class="form-control" id="currentDate"
+                                                [(ngModel)]="activityLog.date" name="currentDate" required />
+                                        </div>
+
+                                        <!-- Vehicle Section -->
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-car"></i> Vehicle
+                                                Information</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="vehicleType" class="form-select"
+                                                        [(ngModel)]="activityLog.transportationModes" name="vehicleType"
+                                                        required>
+                                                        <option hidden value="">Select Vehicle Type</option>
+                                                        <option value="Car">Car</option>
+                                                        <option value="Motorcycle">Motorcycle</option>
+                                                        <option value="Public Transportation">Public Transportation
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="distanceTraveled"
+                                                        [(ngModel)]="activityLog.distanceTraveled"
+                                                        name="distanceTraveled" placeholder="Distance Traveled (KM)"
+                                                        required />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="fuelType" class="form-select"
+                                                        [(ngModel)]="activityLog.fuelType" name="fuelType" required>
+                                                        <option hidden value="">Select Fuel Type</option>
+                                                        <option>Pertamax</option>
+                                                        <option>Pertalite</option>
+                                                        <option>Solar</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="fuelConsumption"
+                                                        [(ngModel)]="activityLog.fuelConsumption" name="fuelConsumption"
+                                                        placeholder="Fuel Consumption (L)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Energy Section -->
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-seedling"></i> Energy
+                                                Source</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="energySource" class="form-select"
+                                                        [(ngModel)]="activityLog.energySource" name="energySource"
+                                                        required>
+                                                        <option hidden value="">Select Energy Source</option>
+                                                        <option>Hydropower</option>
+                                                        <option>Coals</option>
+                                                        <option>Natural Gas</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="energyConsumption"
+                                                        [(ngModel)]="activityLog.energyConsumption"
+                                                        name="energyConsumption" placeholder="Energy Consumption (KWH)"
+                                                        required />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Meals Section -->
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-utensils"></i> Consumed
+                                                Meals</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <select id="foodType" class="form-select"
+                                                        [(ngModel)]="activityLog.foodType" name="foodType" required>
+                                                        <option hidden value="">Select Food Type</option>
+                                                        <option>Plant-based</option>
+                                                        <option>Animal-based</option>
+                                                        <option>Processed food</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="number" class="form-control" id="foodQuantity"
+                                                        [(ngModel)]="activityLog.foodQuantity" name="foodQuantity"
+                                                        placeholder="Food Quantity (KG)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"
+                                            id="submitActivityLog">Submit</button>
+                                    </form>
+                                </section>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Upload Activity Modal End -->
+
+            </div>
+        </div>
+    </div>
+    <div class="floating-buttons">
+        <button type="button" class="btn btn-primary btn-floating btn-lg" id="btn-post"
+            data-bs-target="#uploadPostModal" data-bs-toggle="modal">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>

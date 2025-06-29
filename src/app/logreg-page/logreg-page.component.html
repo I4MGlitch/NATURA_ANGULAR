@@ -1,0 +1,43 @@
+<body>
+    <div class="container" [class.active]="isActive" id="container">
+        <!-- Sign Up Form -->
+        <div class="form-container sign-up">
+            <form (ngSubmit)="register()">
+                <h1>Sign Up</h1>
+                <input type="text" [(ngModel)]="registerData.username" placeholder="Username" name="username" required>
+                <input type="text" [(ngModel)]="registerData.phone" placeholder="Phone" name="phone" required>
+                <input type="email" [(ngModel)]="registerData.email" placeholder="Email" name="email" required>
+                <input type="password" [(ngModel)]="registerData.password" placeholder="Password" name="password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    
+        <!-- Login Form -->
+        <div class="form-container sign-in">
+            <form (ngSubmit)="login()">
+                <input type="email" placeholder="E-mail" [(ngModel)]="loginData.email" name="email" required />
+                <input type="password" placeholder="Password" [(ngModel)]="loginData.password" name="password" required />
+                <button type="submit">Sign In</button>
+              </form>
+        </div>
+    
+        <!-- Toggle Panels -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <!-- Left Panel -->
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Already have an account? Please sign in below</p>
+                    <button class="hidden" (click)="setActive(false)">Sign In</button>
+                </div>
+    
+                <!-- Right Panel -->
+                <div class="toggle-panel toggle-right">
+                    <h1>Greetings, stranger!</h1>
+                    <p>First time? Create an account by filling out the form below</p>
+                    <button class="hidden" (click)="setActive(true)">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

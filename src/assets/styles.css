@@ -1,0 +1,919 @@
+#body {
+    background-color: rgb(247, 247, 247);
+}
+
+
+.circle-image {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+.navbar-logo {
+    padding: 1.15rem 1.5rem;
+    text-align: center;
+}
+
+.navbar-logo img{
+    width: 180px;
+    height: 50px;
+}
+
+.navbar li a{
+    color: #78B3CE;
+}
+
+.navbar-nav .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #78B3CE;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    line-height: 1;
+}
+
+
+
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    }
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+    body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+.sidebar-text a{
+    color: #78B3CE;
+}
+.sidebar-fixed{
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    height: 100%;
+     width: 250px;
+}
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+
+.content-tab li button{
+    color: #78B3CE;
+}
+
+.table-profile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* UNIVERSAL CSS */
+
+.text-clamp-3 {
+    display: -webkit-box; /* Use box model for multi-line clamp */
+    -webkit-line-clamp: 3; /* Specify the number of lines */
+    -webkit-box-orient: vertical; /* Set the box orientation */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) to truncated text */
+}
+.text-clamp-2 {
+    display: -webkit-box; /* Use box model for multi-line clamp */
+    -webkit-line-clamp: 2; /* Specify the number of lines */
+    -webkit-box-orient: vertical; /* Set the box orientation */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) to truncated text */
+}
+
+.text-justify{
+    text-align: justify;
+}
+.text-jusify p{
+    text-align: justify;
+}
+
+.back-arrow-button{
+    color: #78B3CE;
+    text-decoration: none;
+}
+
+/* UNIVERSAL CSS END */
+
+
+/* ADMIN MANAGE */
+.type-button{
+    font-size: 8px;
+    background-color: #0A3981;
+    color: #fff;
+    padding: 1vh 2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+
+.tag-button{
+    font-size: 8px;
+    background-color: #4e73df;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.available-button{
+    font-size: 8px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.inprogress-button{
+    font-size: 8px;
+    background-color: tomato;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.completed-button{
+    font-size: 8px;
+    background-color:darkgray;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.times-button{
+    font-size: 8px;
+    background-color:darkgray;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.add-picture{
+    width: 350px;
+    height: 300px;
+}
+
+/* ADMIN MANAGE END */
+
+/* MANAGE GOAL SECTION */
+.goal-card{
+    min-height:45vh;
+}
+@media screen and (max-width: 1440px) {
+    .goal-card{
+        min-height:30vh;
+    }
+    
+}
+@media screen and (max-width: 1024px) {
+    .goal-card{
+        min-height:20vh;
+    }
+}
+@media screen and (max-width: 780px) {
+    .goal-card{
+        min-height:30vh;
+    }
+}
+@media screen and (max-width: 576px) {
+    .goal-card{
+        min-height:60vh;
+    }
+    
+}
+
+.goal-card-img {
+    width: 100%;           /* Mengisi lebar kolom sepenuhnya */
+    height: 100%;          /* Mengisi tinggi kolom sepenuhnya */
+}
+
+@media screen and (max-width: 1440px) {
+    .goal-card-img {
+        height: 100%; /* Atur tinggi gambar agar proporsional di layar besar */
+    }
+}
+
+/* Media Query untuk penyesuaian ukuran layar */
+@media screen and (max-width: 1024px) {
+    .goal-card-img {
+        height: 100%; /* Atur tinggi gambar agar proporsional di layar medium */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .goal-card-img {
+        height: 100%; /* Atur tinggi gambar untuk layar lebih kecil */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .goal-card-img {
+        height: 150px; /* Tinggi gambar untuk layar smartphone */
+    }
+}
+
+.goal-card-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+
+.modal-custom-width {
+    max-width: 600px; /* Sesuaikan lebar maksimal */
+    width: 80%; /* Tambahkan jika ingin proporsi dinamis */
+}
+
+/* MANAGE GOAL SECTION END */
+
+/* MANAGE ARTICLE SECTION */
+.article-card{
+    min-height: 80vh;
+}
+@media screen and (max-width: 1024px) {
+    .article-card{
+        min-height: 70vh;
+    }
+}
+@media screen and (max-width: 780px) {
+    .article-card{
+        min-height: 80vh;
+    }
+}
+@media screen and (max-width: 576px) {
+    .article-card{
+        min-height: 50vh;
+    }
+}
+.article-card-img {
+    width: 100%; /* Memastikan gambar memenuhi lebar kartu */
+    min-height: 300px; /* Tinggi minimum default */
+    max-height: 300px; /* Tinggi maksimum default */
+    object-fit: cover; /* Memotong gambar agar pas dengan dimensi tanpa distorsi */
+    border-radius: 5px; /* Opsional: Membuat sudut lebih estetik */
+}
+.article-card-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+/* Media Queries untuk ukuran layar yang lebih kecil */
+@media (max-width: 768px) {
+    .article-card-img {
+        min-height: 150px;
+        max-height: 200px;
+    }
+    .article-card-title {
+        font-size: 18px; /* Sedikit lebih kecil untuk menyesuaikan */
+    }
+}
+@media (max-width: 576px) {
+    .article-card-img {
+        min-height: 120px;
+        max-height: 150px;
+    }
+    .article-card-title {
+        font-size: 16px; /* Menyesuaikan font pada perangkat kecil */
+    }
+}
+/* MANAGE ARTICLE SECTION END */
+
+/* ARTICLE PAGE */
+
+.article-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.article-page img{
+    width: 30%;
+    height: 30%;
+}
+.article-category{
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+
+.btn-date{
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.iframe-url {
+    width: 100%;
+    height: 315px;
+}
+
+@media screen and (max-width: 768px) {
+    .iframe-url {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .iframe-url {
+        height: 200px;
+    }
+}
+
+
+
+/* ARTICLE PAGE END */
+
+/* CATEGORY NAME */
+
+.transportation-name{
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+.energy-name{
+    padding: 10px 20px;
+    background-color: lightgreen;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+.diet-name{
+    padding: 10px 20px;
+    background-color: orange;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+
+/* CATEGORY NAME END */
+
+
+
+/* GOAL PAGE */
+
+.btn-todo{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #0A3981;
+    border: #0A3981 solid 2px;
+    border-radius: 10px;
+}
+
+.btn-todo:hover{
+    background-color: #0A3981;
+    color: #fff;
+}
+
+.btn-inprogress{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: tomato;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.btn-completed{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: darkgray;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-goal-done{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+
+/* GOAL PAGE END */
+
+/* SWIPER STYLE */
+
+.swiper-container {
+    overflow: hidden; /* This makes the container clip its content */
+    padding-bottom: 50px; /* Add padding to accommodate the pagination */
+    position: relative; /* To position the pagination correctly */
+}
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #78B3CE; /* Change button color as needed */
+}
+
+
+.swiper-scrollbar {
+    --swiper-scrollbar-sides-offset: 45%;
+    --swiper-scrollbar-bg-color: lightblue;
+    --swiper-scrollbar-drag-bg-color: #78B3CE;
+    --swiper-scrollbar-size: 4px;
+}
+.swiper-pagination1, .swiper-pagination2{
+    --swiper-pagination-color: #78B3CE;
+}
+
+/* SWIPER STYLE END */
+
+
+/* CHAT PAGE */
+
+.nav-pills .badge {
+    background-color: white; /* Warna latar belakang badge */
+    color: #78B3CE; /* Warna teks badge */
+    font-size: 0.8rem; /* Ukuran font badge */
+    font-weight: bold; /* Teks tebal */
+    border-radius: 50%; /* Membuat badge berbentuk lingkaran */
+    padding: 5px 8px; /* Memberi jarak dalam badge */
+    line-height: 1; /* Line height untuk teks di dalam badge */
+    margin-left: 10px; /* Memberi jarak dari teks/tab */
+}
+
+.btn-friend-list {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .friend-list-ul{
+        display: none;
+    }
+    .btn-friend-list {
+        display: block !important;
+    }
+    
+}
+
+.friend-head{
+    height: 7vh;
+    background-color: #78B3CE;
+    
+}
+.chat-li li{
+    list-style: none;
+}
+.chat-li li a{
+    color: #78B3CE;
+    text-decoration: none;
+}
+.chat-li li a:hover{
+    color: white;
+}
+.chat-li .nav-item{
+    transition: background-color 0.3s ease, color 0.3s ease; /* Tambahkan transisi agar efek lebih halus */
+}
+.chat-li .nav-item:hover{
+    background-color: #78B3CE;
+    color: white;
+}
+.chat-li .nav-link.active{
+    background-color: #78B3CE !important;
+        color: white !important;
+}
+
+.chat-scroll{
+    height: 75vh;
+    overflow-y: auto;
+}
+.list-scroll{
+    height: 90vh;
+    overflow-y: auto;
+}
+@media screen and (max-width: 768px) {
+    .chat-scroll{
+        height: 73vh;
+    }
+}
+
+.friendlist-logo i{
+    font-size: 30px;
+    color: #78B3CE;
+}
+.friendlist-logo:hover i{
+    color: #fff;
+    background-color: #78B3CE;
+
+}
+
+/* Nama Chat */
+.chat-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Bubble Chat Styles */
+.bubble {
+    max-width: 100%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bubble-left {
+    background-color: #f1f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.bubble-right {
+    background-color: #007bff;
+    color: #ffffff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 15px;
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+}
+.chat-form-container {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+/* CHAT PAGE END */
+
+/* USER PAGE */
+
+/* Container untuk memastikan gambar tetap responsif */
+.profile-image-container {
+    width: 100%;
+    max-width: 160px; /* Ukuran maksimum gambar */
+    margin: 0 auto; /* Pusatkan container */
+    aspect-ratio: 1/1; /* Menjaga rasio 1:1 (lingkaran) */
+}
+
+.profile-image {
+    width: 100%; /* Gambar mengisi container */
+    height: 100%; /* Tinggi mengisi container */
+    border-radius: 50%; /* Membuat gambar menjadi lingkaran */
+    object-fit: cover; /* Menjaga proporsi gambar */
+    display: block;
+}
+
+/* Responsif untuk ukuran layar yang lebih kecil */
+@media screen and (max-width: 1024px) {
+    .profile-image-container {
+        max-width: 140px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile-image-container {
+        max-width: 1200px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .profile-image-container {
+        max-width: 100px;
+    }
+}
+
+
+
+.profile-username {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.profile-description {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .profile-image {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.btn-profile {
+    background-color: grey;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none;
+}
+
+
+.btn-profile:hover {
+    background-color: lightgrey;
+    color: black;
+}
+
+.btn-commuting{
+    background-color: #78B3CE;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+.btn-energy{
+    background-color: green;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+.btn-diet{
+    background-color: sandybrown;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+
+
+.post-space {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+.post-modal-images{
+    max-width: 50%;
+    height: auto;
+}
+@media (max-width: 768px) {
+    .post-modal-images{
+        max-width: 100% !important;
+        height: auto;
+    }
+}
+.post-images {
+    display: flex;
+    overflow: hidden; /* Hilangkan elemen di luar kotak */
+    position: relative;
+    max-width: 100%; /* Responsif sesuai kontainer */
+    max-height: 60vh; /* Maksimal 60% dari tinggi viewport */
+}
+
+.post-images img {
+    width: 100%; /* Sesuaikan gambar dengan lebar kontainer */
+    height: auto; /* Pertahankan rasio asli */
+    max-width: 50%; /* Maksimal 50% dari kontainer untuk tampilan landscape besar */
+    max-height: 100%; /* Gambar tidak lebih tinggi dari kontainer */
+    object-fit: cover; /* Pastikan gambar terlihat penuh dalam kontainer */
+    border-radius: 8px; /* Tambahkan sudut melengkung */
+}
+
+@media (max-width: 768px) {
+    .post-images {
+        max-height: 40vh; /* Sesuaikan untuk layar kecil */
+    }
+
+    .post-images img {
+        max-width: 100%; /* Ambil seluruh lebar kontainer */
+        object-fit: contain; /* Pastikan gambar tidak terpotong di layar kecil */
+    }
+}
+
+.mini-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+.post-actions {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.post-button i, span{
+    font-size: 16px;
+    color: #608BC1;
+}
+
+.post-content{
+    max-height: 58vh;
+    min-height: 58vh;
+    overflow-y: auto;
+}
+
+.post-comment {
+    max-height: 50vh;
+    min-height: 50vh;
+    overflow-y: auto;
+}
+
+.add-friend-scroll{
+    max-height: 38vh;
+    min-height: 38vh;
+    overflow-y: auto;
+}
+
+.details-title{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.details-info{
+    background-color: rgb(247, 247, 247);
+    color: black;
+    padding: 1vh;
+    text-align: start;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+
+/* USER PAGE END */
+
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#btn-post {
+    background-color: #608BC1;
+    color: white;
+    padding: 1vh 2vh;
+    border-radius: 1vh;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8vh;
+}
+
+.progress-bar {
+    transition: width 0.4s ease;
+}
+
+#progress-text {
+    font-weight: bold;
+    color: tomato; /* Warna teks sesuai dengan warna bar */
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* DASHBOARD SECTION */
+.border-transportation-primary {
+    border-left: 0.25rem solid rgba(75, 192, 192, 1) !important;
+}
+.border-energy-primary {
+    border-left: 0.25rem solid rgba(153, 102, 255, 1) !important;
+}
+.border-diet-primary {
+    border-left: 0.25rem solid rgba(255, 159, 64, 1) !important;
+}
+.border-total-primary{
+    border-left: 0.25rem solid #78B3CE !important;
+}
+.total-emissions-transportation{
+    font-size: 30px;
+    font-weight: 600;
+    color: rgba(75, 192, 192, 1);
+}
+.total-emissions-energy{
+    font-size: 30px;
+    font-weight: 600;
+    color: rgba(153, 102, 255, 1);
+}
+.total-emissions-diet{
+    font-size: 30px;
+    font-weight: 600;
+    color: rgba(255, 159, 64, 1);
+}
+.total-highest-emissions{
+    font-size: 30px;
+    font-weight: 600;
+    color: #78B3CE;
+}
+.environtmental-card {
+    min-height: 280px; /* Default minimal height */
+}
+
+@media (max-width: 768px) {
+    .environtmental-card {
+        min-height: 120px; /* Untuk tablet atau layar lebih kecil */
+    }
+}
+
+@media (max-width: 576px) {
+    .environtmental-card {
+        min-height: 100px; /* Untuk layar ponsel */
+    }
+}
+.scrollable-table {
+    overflow-x: auto;
+    white-space: nowrap;
+    max-height: 300px;
+}
+canvas {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+  }
+/* DASHBOARD SECTION END */

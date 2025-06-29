@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website Title</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="index.html"><img src="assets/images/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.html">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="community.html">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="actions.html">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+            
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page.html">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">3</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="badge">5</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+            
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="profile.html">
+                                    <img src="assets/images/Cat03.jpg" class="circle-image me-2" alt="Circle Image">
+                                    <span>User</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>You have 3 new messages</li>
+                                <li>Your profile has been updated</li>
+                                <li>Meeting scheduled at 3 PM</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NAVBAR END -->
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav nav-tabs bg-white content-tab" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="activity-log-tab" data-bs-toggle="tab" data-bs-target="#activity-log-tab-pane" type="button" role="tab" aria-controls="activity-log-tab-pane">Activity Log</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="historical-tab" data-bs-toggle="tab" data-bs-target="#historical-tab-pane" type="button" role="tab" aria-controls="historical-tab-pane">Historical Tracking</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="recommendations-tab" data-bs-toggle="tab" data-bs-target="#recommendations-tab-pane" type="button" role="tab" aria-controls="recommendations-tab-pane">Recommendations</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="activity-log-tab-pane" role="tabpanel" aria-labelledby="activity-log-tab" tabindex="0">
+                            <div class="row bg-white mb-4">
+                                <div class="col-md-12 p-4">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3">
+                                                    <i class="fa-solid fa-exclamation-circle text-warning" style="font-size: 2rem;"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="mb-1 fw-bold">Notification</p>
+                                                    <p class="mb-0">Please upload your daily activity log to keep your records up to date.</p>
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12 pt-4">
+                                    <div class="row">
+                                        <!-- Select Date -->
+                                        <div class="col-md-4 col-6">
+                                            <label for="fromDate" class="form-label">Select Date</label>
+                                            <input type="date" class="form-control" id="fromDate" required />
+                                        </div>
+                                        <div class="col-md-4 col-6 mb-4">
+                                            <label for="todatDate" class="form-label">Current Date</label>
+                                            <input type="text" id="todatDate" class="form-control" placeholder="6 January 2023" readonly />
+                                        </div>
+                                        <div class="col-md-4 col-12 text-center">
+                                            <label for="toDate" class="form-label d-block">Upload Daily Activity Log</label>
+                                            <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#uploadActivityModal" id="btn-post">
+                                                <i class="fa-solid fa-plus"></i> Upload Activity Log
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <p>Carbon Emissions Calculation</p>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm p-2">
+                                                <p>Transportation Emissions</p>
+                                            </div>
+                                            <div class="card shadow-sm p-2 mt-2">
+                                                <p>Energy Emissions</p>
+                                            </div>
+                                            <div class="card shadow-sm p-2 mt-2 mb-4">
+                                                <p>Diet Emissions</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm p-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="w-100" style="max-width: 800px;">
+                                                        <canvas id="myChart"></canvas>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="my-3">
+                                    <div class="row mt-4">
+                                        <p>Environmental Impact</p>
+                                        <p>
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="historical-tab-pane" role="tabpanel" aria-labelledby="historical-tab" tabindex="0">
+                            <div class="row bg-white">
+                                <div class="col-md-12">
+                                    <div class="row p-4">
+                                        <div class="col-md-4 col-6">
+                                            <label for="fromDate" class="form-label">From Date</label>
+                                            <input type="date" class="form-control" id="fromDate" required />
+                                        </div>
+                                        <div class="col-md-4 col-6">
+                                            <label for="fromDate" class="form-label">To Date</label>
+                                            <input type="date" class="form-control" id="fromDate" required />
+                                        </div>
+                                        <div class="col-md-4 col-12 text-start mt-4">
+                                            <button type="button" class="btn btn-primary mt-2">
+                                                <i class="fa-solid fa-calendar-check"></i> Apply
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <div class="w-100" style="max-width: 800px;">
+                                      <canvas id="myBarChart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-4">
+                                    <div class="row">
+                                        <p>Carbon Emissions Summary</p>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm p-2">
+                                                <p>Transportation Emissions</p>
+                                            </div>
+                                            <div class="card shadow-sm p-2 mt-2">
+                                                <p>Energy Emissions</p>
+                                            </div>
+                                            <div class="card shadow-sm p-2 mt-2 mb-4">
+                                                <p>Diet Emissions</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm p-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="w-100" style="max-width: 800px;">
+                                                        <canvas id="myChart2"></canvas>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="recommendations-tab-pane" role="tabpanel" aria-labelledby="recomendations-tab" tabindex="0">
+
+                            <div class="row bg-white">
+                                <div class="col-md-12">
+                                    
+                                    <div class="row mt-4">
+                                        <h2>Recommendations</h2>
+                                        <div class="col-md-12">
+                                            <!-- <p>Historical Activity</p>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="card shadow-sm p-4">
+                                                        <p>p</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="card shadow-sm p-4">
+                                                        <p>p</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="card shadow-sm p-4">
+                                                        <p>p</p>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                        </div>
+                                        <!-- <div class="col-md-12">
+                                            <p>Environmental Impact Insights</p>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-4">                                            
+                                    <p>Recommendations Activities</p>
+                                    <div class="swiper-container container1">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide col-6">
+                                                <div class="card goal-card mb-3 border-left-primary">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                        </div>
+                                                        <div class="col-md-8 pb-2">
+                                                            <div class="card-body">
+                                                                <p class="card-title goal-card-title">Card Title</p>
+                                                                <div class="d-flex justify-content-start">
+                                                                    <p class="tag-button me-1">Tags</p>
+                                                                    <p class="tag-button me-1">Tags</p>
+                                                                    <p class="tag-button me-1">Tags</p>
+                                                                </div>
+                                                                <p class="card-text text-clamp-3">
+                                                                    This is a wider card with supporting text below as a natural lead-in to
+                                                                    additional content. This content is a little bit longer.
+                                                                </p>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <p class="available-button me-1">Available</p>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary float-end me-1 mb-2">Read More</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        <!-- Pagination -->
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Activity Modal -->
+                <div class="modal fade" id="uploadActivityModal" tabindex="-1" aria-labelledby="uploadActivityModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="uploadActivityModalLabel"><i class="fa-solid fa-bars-progress"></i> Upload Activity Log</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <section class="container">
+                                    <form action="#" class="form">
+                                        <div class="mb-3">
+                                            <label for="currentDate" class="form-label"><i class="fa-solid fa-calendar-days"></i> Current Date</label>
+                                            <input type="date" class="form-control" id="currentDate" placeholder="Enter current date" required />
+                                        </div>        
+                                
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-car"></i> Vehicle</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="vehicleType" class="form-label">Vehicle Type</label> -->
+                                                    <select id="vehicleType" class="form-select">
+                                                        <option hidden>Vehicle Type</option>
+                                                        <option>Car</option>
+                                                        <option>Motorcycle</option>
+                                                        <option>Public Transportation</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="distanceTraveled" class="form-label">Distance Traveled (KM)</label> -->
+                                                    <input type="number" class="form-control" id="distanceTraveled" placeholder="Distance Traveled (KM)" required />
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row mt-3">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="fuelType" class="form-label">Fuel Type</label> -->
+                                                    <select id="fuelType" class="form-select">
+                                                        <option hidden>Fuel Type</option>
+                                                        <option>Pertamax</option>
+                                                        <option>Pertalite</option>
+                                                        <option>Solar</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="fuelConsumption" class="form-label">Total Fuel Consumption (L)</label> -->
+                                                    <input type="number" class="form-control" id="fuelConsumption" placeholder="Total fuel consumption (L)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-seedling"></i> Energy Source</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="energySource" class="form-label">Energy Source</label> -->
+                                                    <select id="energySource" class="form-select">
+                                                        <option hidden>Energy Source</option>
+                                                        <option>Hydropower</option>
+                                                        <option>Coals</option>
+                                                        <option>Natural Gas</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="energyConsumption" class="form-label">Total Energy Consumption (KWH)</label> -->
+                                                    <input type="text" class="form-control" id="energyConsumption" placeholder="Total energy consumption (KWH)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="mb-3">
+                                            <label class="form-label"><i class="fa-solid fa-utensils"></i> Consumed Meals</label>
+                                            <div class="row">
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="foodType" class="form-label">Food Type</label> -->
+                                                    <select id="foodType" class="form-select">
+                                                        <option hidden>Food Type</option>
+                                                        <option>Plant-based</option>
+                                                        <option>Animal-based</option>
+                                                        <option>Processed food</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <!-- <label for="foodQuantity" class="form-label">Food Quantity (KG)</label> -->
+                                                    <input type="number" class="form-control" id="foodQuantity" placeholder="Food quantity (KG)" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </section>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <!-- Upload Activity Modal End -->
+
+            </div>
+            <!-- Page content end -->
+                
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="assets/chart.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/swiper.js"></script>
+
+</body>
+</html>

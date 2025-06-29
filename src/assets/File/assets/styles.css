@@ -1,0 +1,716 @@
+#body {
+    background-color: rgb(247, 247, 247);
+}
+
+
+.circle-image {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+.navbar-logo {
+    padding: 1.15rem 1.5rem;
+    text-align: center;
+}
+
+.navbar-logo img{
+    width: 180px;
+    height: 50px;
+}
+
+.navbar li a{
+    color: #78B3CE;
+}
+
+.navbar-nav .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #78B3CE;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    line-height: 1;
+}
+
+
+
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    }
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+    body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+.sidebar-text a{
+    color: #78B3CE;
+}
+.sidebar-fixed{
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    height: 100%;
+     width: 250px;
+}
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+
+.content-tab li button{
+    color: #78B3CE;
+}
+
+.table-profile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* UNIVERSAL CSS */
+
+.text-clamp-3 {
+    display: -webkit-box; /* Use box model for multi-line clamp */
+    -webkit-line-clamp: 3; /* Specify the number of lines */
+    -webkit-box-orient: vertical; /* Set the box orientation */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) to truncated text */
+}
+
+.text-justify p{
+    text-align: justify;
+}
+
+.back-arrow-button{
+    color: #78B3CE;
+    text-decoration: none;
+}
+
+/* UNIVERSAL CSS END */
+
+
+
+/* ADMIN TABS */
+
+/* ADMIN TABS END */
+
+/* ADMIN MANAGE */
+.type-button{
+    font-size: 8px;
+    background-color: #0A3981;
+    color: #fff;
+    padding: 1vh 2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+
+.tag-button{
+    font-size: 8px;
+    background-color: #4e73df;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.available-button{
+    font-size: 8px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.inprogress-button{
+    font-size: 8px;
+    background-color: tomato;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.completed-button{
+    font-size: 8px;
+    background-color:darkgray;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+.times-button{
+    font-size: 8px;
+    background-color:darkgray;
+    color: #fff;
+    padding: 1vh 0.2vh;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+
+/* ADMIN MANAGE END */
+
+/* MANAGE GOAL SECTION */
+.goal-card{
+    min-height: 30vh;
+}
+.goal-card img{
+    width: 100%;
+    height: auto;
+}
+.goal-card-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+.score-modal img{
+    max-width: 300px;
+    height: auto;
+}
+
+.goal-score{
+    background-color: #608BC1;
+    color: #0A3981;
+    padding: 1vh 2vh;
+    border-radius: 2vh;
+    font-size: 16px;
+    font-weight: 800;
+    margin-right: 1vh;
+}
+.xp-score{
+    background-color: #608BC1;
+    color: #0A3981;
+    padding: 1vh 2vh;
+    border-radius: 2vh;
+    font-size: 16px;
+    font-weight: 800;
+    margin-right: 1vh;
+}
+
+.modal-custom-width {
+    max-width: 600px; /* Sesuaikan lebar maksimal */
+    width: 80%; /* Tambahkan jika ingin proporsi dinamis */
+}
+
+
+/* MANAGE GOAL SECTION END */
+
+/* MANAGE ARTICLE SECTION */
+.article-card{
+    max-width: 540px;
+}
+.article-card img{
+    width: 100%;
+    height: auto;
+}
+.article-card-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.dropdown-menu.keep-open {
+    pointer-events: auto;
+}
+.badge-article {
+    font-size: 0.9rem;
+    border-radius: 0.25rem;
+    z-index: 1;
+}
+
+/* MANAGE ARTICLE SECTION END */
+
+/* ARTICLE PAGE */
+
+.article-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.article-page img{
+    width: 30%;
+    height: 30%;
+}
+.article-category{
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+
+.btn-date{
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+/* ARTICLE PAGE END */
+
+/* CATEGORY NAME */
+
+.transportation-name{
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+.energy-name{
+    padding: 10px 20px;
+    background-color: lightgreen;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+.diet-name{
+    padding: 10px 20px;
+    background-color: orange;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+    font-size: 8px;
+    font-weight: 400;
+}
+
+/* CATEGORY NAME END */
+
+
+
+/* GOAL PAGE */
+
+.btn-todo{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #0A3981;
+    border: #0A3981 solid 2px;
+    border-radius: 10px;
+}
+
+.btn-todo:hover{
+    background-color: #0A3981;
+    color: #fff;
+}
+
+.btn-inprogress{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: tomato;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.btn-completed{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: darkgray;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-goal-done{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: #0A3981;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+
+/* GOAL PAGE END */
+
+/* SWIPER STYLE */
+
+.swiper-container {
+    overflow: hidden; /* This makes the container clip its content */
+    padding-bottom: 50px; /* Add padding to accommodate the pagination */
+    position: relative; /* To position the pagination correctly */
+}
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #78B3CE; /* Change button color as needed */
+}
+
+
+.swiper-scrollbar {
+    --swiper-scrollbar-sides-offset: 45%;
+    --swiper-scrollbar-bg-color: lightblue;
+    --swiper-scrollbar-drag-bg-color: #78B3CE;
+    --swiper-scrollbar-size: 4px;
+}
+.swiper-pagination1, .swiper-pagination2{
+    --swiper-pagination-color: #78B3CE;
+}
+
+/* SWIPER STYLE END */
+
+
+/* CHAT PAGE */
+
+.nav-pills .badge {
+    background-color: white; /* Warna latar belakang badge */
+    color: #78B3CE; /* Warna teks badge */
+    font-size: 0.8rem; /* Ukuran font badge */
+    font-weight: bold; /* Teks tebal */
+    border-radius: 50%; /* Membuat badge berbentuk lingkaran */
+    padding: 5px 8px; /* Memberi jarak dalam badge */
+    line-height: 1; /* Line height untuk teks di dalam badge */
+    margin-left: 10px; /* Memberi jarak dari teks/tab */
+}
+
+.btn-friend-list {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .friend-list-ul{
+        display: none;
+    }
+    .btn-friend-list {
+        display: block !important;
+    }
+    
+}
+
+.friend-head{
+    height: 7vh;
+    background-color: #78B3CE;
+    
+}
+.chat-li li{
+    list-style: none;
+}
+.chat-li li a{
+    color: #78B3CE;
+    text-decoration: none;
+}
+.chat-li li a:hover{
+    color: white;
+}
+.chat-li .nav-item{
+    transition: background-color 0.3s ease, color 0.3s ease; /* Tambahkan transisi agar efek lebih halus */
+}
+.chat-li .nav-item:hover{
+    background-color: #78B3CE;
+    color: white;
+}
+.chat-li .nav-link.active{
+    background-color: #78B3CE !important;
+        color: white !important;
+}
+
+.chat-scroll{
+    height: 75vh;
+    overflow-y: auto;
+}
+.list-scroll{
+    height: 90vh;
+    overflow-y: auto;
+}
+@media screen and (max-width: 768px) {
+    .chat-scroll{
+        height: 73vh;
+    }
+}
+
+.friendlist-logo i{
+    font-size: 30px;
+    color: #78B3CE;
+}
+.friendlist-logo:hover i{
+    color: #fff;
+    background-color: #78B3CE;
+
+}
+
+/* Nama Chat */
+.chat-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Bubble Chat Styles */
+.bubble {
+    max-width: 100%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bubble-left {
+    background-color: #f1f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.bubble-right {
+    background-color: #007bff;
+    color: #ffffff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 15px;
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* CHAT PAGE END */
+
+/* USER PAGE */
+
+.profile-image {
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+}
+
+.profile-username {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.profile-description {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .profile-image {
+        width: 100%;
+        height: 100%;
+    }
+    .post-images img {
+        max-width: 100% !important;
+        height: auto;
+    }
+}
+
+.btn-profile {
+    background-color: grey;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none;
+}
+
+
+.btn-profile:hover {
+    background-color: lightgrey;
+    color: black;
+}
+
+.btn-commuting{
+    background-color: #78B3CE;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+.btn-energy{
+    background-color: green;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+.btn-diet{
+    background-color: sandybrown;
+    color: white;
+    padding: 1vh;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+
+
+.post-space {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+.post-images img {
+    max-width: 40%;
+    height: auto;
+}
+
+.mini-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+.post-actions {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.post-button i, span{
+    font-size: 16px;
+    color: #608BC1;
+}
+.post-date{
+    font-size: 14px;
+    color: #608BC1;
+}
+
+.post-content{
+    max-height: 58vh;
+    min-height: 58vh;
+    overflow-y: auto;
+}
+
+.post-comment {
+    max-height: 50vh;
+    min-height: 50vh;
+    overflow-y: auto;
+}
+
+.add-friend-scroll{
+    max-height: 38vh;
+    min-height: 38vh;
+    overflow-y: auto;
+}
+
+.details-title{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.details-info{
+    background-color: rgb(247, 247, 247);
+    color: black;
+    padding: 1vh;
+    text-align: start;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 1vh;
+    border: none
+}
+
+/* USER PAGE END */
+
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#btn-post {
+    background-color: #608BC1;
+    color: white;
+    padding: 1vh 2vh;
+    border-radius: 1vh;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8vh;
+}
+
+.progress-bar {
+    transition: width 0.4s ease;
+}
+
+#progress-text {
+    font-weight: bold;
+    color: tomato; /* Warna teks sesuai dengan warna bar */
+    text-align: center;
+    margin-top: 20px;
+}

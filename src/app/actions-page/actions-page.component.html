@@ -1,0 +1,521 @@
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="/"><img src="/assets/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/community-page">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/actions-page">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-3 mt-auto" (click)="logout()"
+                    routerLink="/logreg-page" style="color: black; font-weight: bold;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">{{ unreadMessageCount }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="user-profile-page">
+                                    <img [src]="(userData.profilePic && userData.profilePic[0]?.data && userData.profilePic[0]?.contentType !== '' 
+                                    ? getImageUrl(userData.profilePic[0].data) 
+                                    : getErrorImageUrl())" class="circle-image me-2"
+                                        alt="{{ userData.username }} Image" />
+                                    <span>{{ userData.username }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- NAVBAR END -->
+
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Nav Tabs -->
+                    <ul class="nav nav-tabs bg-white content-tab" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="goal-tab" data-bs-toggle="tab"
+                                data-bs-target="#goal-tab-pane" type="button" role="tab" aria-controls="goal-tab-pane"
+                                aria-selected="true">Goal Activity</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="educational-tab" data-bs-toggle="tab"
+                                data-bs-target="#educational-tab-pane" type="button" role="tab"
+                                aria-controls="educational-tab-pane" aria-selected="false">Learning Educational</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="progress-tab" data-bs-toggle="tab"
+                                data-bs-target="#progress-tab-pane" type="button" role="tab"
+                                aria-controls="progress-tab-pane" aria-selected="false">Goal Progress</button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Contents -->
+                    <div class="tab-content" id="myTabContent">
+
+                        <!-- Goal Tab -->
+                        <div class="tab-pane fade show active pt-2" id="goal-tab-pane" role="tabpanel"
+                            aria-labelledby="goal-tab" tabindex="0">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <h4 class="h4 mb-4">Recent Activities</h4>
+                                            <div class="swiper-container container1">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide col-6"
+                                                        *ngFor="let goal of goals.slice().reverse()">
+                                                        <div class="card goal-card mb-3 border-left-primary">
+                                                            <div class="row g-0">
+                                                                <div class="col-md-4">
+                                                                    <img [src]="(goal.pictures?.length > 0 ? getImageUrl(goal.pictures[0]?.data) : getErrorImageUrl())"
+                                                                        class="goal-card-img"
+                                                                        alt="{{ goal.title }} Image" />
+                                                                </div>
+                                                                <div class="col-md-8 pb-2">
+                                                                    <div class="card-body">
+                                                                        <p
+                                                                            class="card-title text-clamp-2 goal-card-title">
+                                                                            {{ goal.title }}</p>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <p class="tag-button me-1">{{ goal.tags }}
+                                                                            </p>
+                                                                        </div>
+                                                                        <p class="card-text text-clamp-3">{{
+                                                                            goal.description }}</p>
+                                                                        <div class="d-flex justify-content-end">
+                                                                            <p *ngIf="getUserProgress(goal) === 0"
+                                                                                class="available-button me-1"
+                                                                                style="margin-bottom: 9vh;">Available
+                                                                            </p>
+                                                                            <div *ngIf="getUserProgress(goal) > 0"
+                                                                                class="d-flex align-items-center justify-content-end mb-2">
+                                                                                <div class="progress"
+                                                                                    style="width: 100%; height: 20px; margin-right: 10px;">
+                                                                                    <div class="progress-bar bg-success"
+                                                                                        role="progressbar"
+                                                                                        [style.width]="getUserProgress(goal) + '%'"
+                                                                                        [attr.aria-valuenow]="getUserProgress(goal)"
+                                                                                        aria-valuemin="0"
+                                                                                        aria-valuemax="100">
+                                                                                        {{ getUserProgress(goal) }}%
+                                                                                    </div>
+                                                                                </div>
+                                                                                <p id="progress-text"
+                                                                                    class="h4 text-center pb-4 mb-2">{{
+                                                                                    getUserProgress(goal) }}%</p>
+                                                                                <p class="inprogress-button ms-2 mb-2">
+                                                                                    In progress</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <a [routerLink]="['/goal-activity-detail-page/', goal._id]"
+                                                                            class="btn btn-outline-primary float-end me-1 mb-2">Read
+                                                                            More</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- Pagination -->
+                                                <div class="swiper-pagination swiper-pagination1"></div>
+                                                <!-- Navigation -->
+                                                <!-- <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 col-md-4 mt-2">
+                                            <form class="d-flex" role="search">
+                                                <input class="form-control me-2" type="search"
+                                                    placeholder="Search activities" aria-label="Search">
+                                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                            </form>
+                                        </div>
+
+                                        <div class="col-12 col-md-4 mt-2">
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <h4 class="h4 mb-4">All Activities</h4>
+                                        <div class="col-md-12">
+                                            <div class="row">
+
+                                                <div class="col-xl-6 mb-2" *ngFor="let goal of goals">
+                                                    <div class="d-flex justify-content-center">
+                                            
+                                                        <div class="card goal-card mb-3 border-left-primary">
+                                                            <div class="row g-0">
+                                                                <div class="col-md-4">
+                                                                    <img [src]="(goal.pictures?.length > 0 ? getImageUrl(goal.pictures[0]?.data) : getErrorImageUrl())"
+                                                                        class="goal-card-img"
+                                                                        alt="{{ goal.title }} Image" />
+                                                                </div>
+                                                                <div class="col-md-8 pb-2">
+                                                                    <div class="card-body">
+                                                                        <p
+                                                                            class="card-title text-clamp-2 goal-card-title">
+                                                                            {{ goal.title }}</p>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <p class="tag-button me-1">{{ goal.tags }}
+                                                                            </p>
+                                                                        </div>
+                                                                        <p class="card-text text-clamp-3">{{
+                                                                            goal.description }}</p>
+                                                                        <div class="d-flex justify-content-end">
+                                                                            <p *ngIf="getUserProgress(goal) === 0"
+                                                                                class="available-button me-1"
+                                                                                style="margin-bottom: 9vh;">Available
+                                                                            </p>
+                                                                            <div *ngIf="getUserProgress(goal) > 0"
+                                                                                class="d-flex align-items-center justify-content-end mb-2">
+                                                                                <div class="progress"
+                                                                                    style="width: 100%; height: 20px; margin-right: 10px;">
+                                                                                    <div class="progress-bar bg-success"
+                                                                                        role="progressbar"
+                                                                                        [style.width]="getUserProgress(goal) + '%'"
+                                                                                        [attr.aria-valuenow]="getUserProgress(goal)"
+                                                                                        aria-valuemin="0"
+                                                                                        aria-valuemax="100">
+                                                                                        {{ getUserProgress(goal) }}%
+                                                                                    </div>
+                                                                                </div>
+                                                                                <p id="progress-text"
+                                                                                    class="h4 text-center pb-4 mb-2">{{
+                                                                                    getUserProgress(goal) }}%</p>
+                                                                                <p class="inprogress-button ms-2 mb-2">
+                                                                                    In progress</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <a [routerLink]="['/goal-activity-detail-page/', goal._id]"
+                                                                            class="btn btn-outline-primary float-end me-1 mb-2">Read
+                                                                            More</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Goal Tab End -->
+
+                        <!-- Educational Tab -->
+                        <div class="tab-pane fade pt-2" id="educational-tab-pane" role="tabpanel"
+                            aria-labelledby="educational-tab" tabindex="0">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <h4 class="h4 mb-4">Recent Content</h4>
+                                            <div class="swiper-container container2">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide col-4"
+                                                        *ngFor="let content of educationalContentList.slice().reverse()">
+                                                        <div class="card article-card shadow-sm position-relative">
+                                                            <p
+                                                                class="badge-article position-absolute top-0 end-0 bg-primary text-white m-2 px-2 py-1">
+                                                                {{content.category}}</p>
+                                                            <img [src]="(content.pictures?.length > 0 ? getImageUrl(content.pictures[0]?.data) : getErrorImageUrl())"
+                                                                class="img-fluid article-card-img"
+                                                                alt="{{ content.title }} Image" />
+                                                            <div class="card-body">
+                                                                <p
+                                                                    class="card-title text-clamp-2 article-card-title text-clamp-2">
+                                                                    {{content.title}}</p>
+                                                                <div class="d-flex justify-content-start">
+                                                                    <p class="tag-button me-1">{{content.tags}}</p>
+                                                                </div>
+                                                                <p class="card-text text-clamp-3">
+                                                                    {{content.description}}</p>
+
+                                                            </div>
+                                                            <div class="card-footer border-0 bg-white">
+                                                                <a [routerLink]="'/educational-content-detail-page/' + content._id"
+                                                                    class="btn btn-outline-primary float-end">Read
+                                                                    More</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <!-- Pagination -->
+                                                <div class="swiper-pagination swiper-pagination2"></div>
+                                                <!-- Navigation -->
+                                                <!-- <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 col-md-4 mt-2">
+                                            <form class="d-flex" role="search">
+                                                <input class="form-control me-2" type="search"
+                                                    placeholder="Search activities" aria-label="Search">
+                                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                            </form>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-md-4 mt-2">
+                                            <select class="form-select">
+                                                <option selected>Sort by Content</option>
+                                                <option value="1">Articles</option>
+                                                <option value="2">Videos</option>
+                                                <option value="3">Infographics</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-md-4 mt-2">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-md-12">
+                                            <h4 class="h4 mb-4">Learning Content</h4>
+                                            <div class="row d-flex flex-wrap">
+
+                                                <div class="col-md-4 mb-2"
+                                                    *ngFor="let content of educationalContentList">
+                                                    <div class="card article-card shadow-sm position-relative">
+                                                        <p
+                                                            class="badge-article position-absolute top-0 end-0 bg-primary text-white m-2 px-2 py-1">
+                                                            {{ content.category }}
+                                                        </p>
+                                                        <img [src]="(content.pictures?.length > 0 ? getImageUrl(content.pictures[0]?.data) : getErrorImageUrl())"
+                                                            class="img-fluid article-card-img"
+                                                            alt="{{ content.title }} Image" />
+                                                        <div class="card-body">
+                                                            <p class="card-title article-card-title text-clamp-2">{{
+                                                                content.title }}</p>
+                                                            <div class="d-flex justify-content-start">
+                                                                <p class="tag-button me-1">{{ content.tags }}</p>
+                                                            </div>
+                                                            <p class="card-text text-clamp-3">{{ content.description }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-footer border-0 bg-white">
+                                                            <a [routerLink]="'/educational-content-detail-page/' + content._id"
+                                                                class="btn btn-outline-primary float-end">Read More</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Educational Tab End -->
+
+                        <!-- Goal Progress Tab -->
+                        <div class="tab-pane fade pt-2" id="progress-tab-pane" role="tabpanel"
+                            aria-labelledby="progress-tab" tabindex="0">
+                            <div class="card mb-2">
+                                <div class="card-body">
+
+                                    <!-- In Progress Goals -->
+                                    <div class="row">
+                                        <div class="col-md-12 mt-4">
+                                            <p>In Progress</p>
+                                            <div class="swiper-container container1">
+                                                <div class="swiper-wrapper">
+                                                    <ng-container *ngFor="let goal of goals">
+                                                        <ng-container *ngIf="getUserProgress(goal) > 0">
+                                                            <div class="swiper-slide col-6">
+                                                                <div class="card goal-card mb-3 border-left-primary">
+                                                                    <div class="row g-0">
+                                                                        <div class="col-md-4">
+                                                                            <img [src]="(goal.pictures?.length > 0 ? getImageUrl(goal.pictures[0]?.data) : getErrorImageUrl())"
+                                                                                class="img-fluid h-100 goal-card"
+                                                                                alt="{{ goal.title }} Image" />
+                                                                        </div>
+                                                                        <div class="col-md-8 pb-2">
+                                                                            <div class="card-body">
+                                                                                <p class="card-title goal-card-title">{{
+                                                                                    goal.title }}</p>
+                                                                                <div
+                                                                                    class="d-flex justify-content-start">
+                                                                                    <p class="tag-button me-1">{{
+                                                                                        goal.tags }}</p>
+                                                                                </div>
+                                                                                <p class="card-text text-clamp-3">{{
+                                                                                    goal.description }}</p>
+                                                                                <div class="d-flex justify-content-end">
+                                                                                    <div
+                                                                                        class="d-flex align-items-center justify-content-end mb-2">
+                                                                                        <div class="progress"
+                                                                                            style="width: 100%; height: 20px; margin-right: 10px;">
+                                                                                            <div class="progress-bar bg-success"
+                                                                                                role="progressbar"
+                                                                                                [style.width]="getUserProgress(goal) + '%'"
+                                                                                                [attr.aria-valuenow]="getUserProgress(goal)"
+                                                                                                aria-valuemin="0"
+                                                                                                aria-valuemax="100">
+                                                                                                {{ getUserProgress(goal)
+                                                                                                }}%
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <p id="progress-text"
+                                                                                            class="h4 text-center pb-4 mb-2">
+                                                                                            {{ getUserProgress(goal) }}%
+                                                                                        </p>
+                                                                                        <p
+                                                                                            class="inprogress-button ms-2 mb-2">
+                                                                                            In progress</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <a [routerLink]="['/goal-activity-detail-page/', goal._id]"
+                                                                                    class="btn btn-outline-primary float-end me-1 mb-2">Read
+                                                                                    More</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ng-container>
+                                                    </ng-container>
+                                                </div>
+                                                <!-- Pagination -->
+                                                <div class="swiper-pagination swiper-pagination1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Completed Goals -->
+                                    <div class="row mt-4">
+                                        <p>Activity Done</p>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <ng-container *ngFor="let goal of goals">
+                                                    <ng-container *ngIf="(getUserRepetition(goal) ?? 0) > 0">
+                                                        <div class="col-xl-6 mb-2">
+                                                            
+                                                            <div class="card goal-card mb-3 border-left-primary">
+                                                                <div class="row g-0">
+                                                                    <div class="col-md-4">
+                                                                        <img [src]="(goal.pictures?.length > 0 ? getImageUrl(goal.pictures[0]?.data) : getErrorImageUrl())"
+                                                                            class="goal-card-img"
+                                                                            alt="{{ goal.title }} Image" />
+                                                                    </div>
+                                                                    <div class="col-md-8 pb-2">
+                                                                        <div class="card-body">
+                                                                            <p
+                                                                                class="card-title text-clamp-2 goal-card-title">
+                                                                                {{ goal.title }}</p>
+                                                                            <div class="d-flex justify-content-start">
+                                                                                <p class="tag-button me-1">{{ goal.tags }}
+                                                                                </p>
+                                                                            </div>
+                                                                            <p class="card-text text-clamp-3">{{
+                                                                                goal.description }}</p>
+                                                                            <div class="d-flex justify-content-end">
+                                                                                <p *ngIf="getUserProgress(goal) === 0"
+                                                                                    class="completed-button me-1"
+                                                                                    style="margin-bottom: 9vh;">Completed
+                                                                                </p>
+                                                                                <div *ngIf="getUserProgress(goal) > 0"
+                                                                                    class="d-flex align-items-center justify-content-end mb-2">
+                                                                                    <div class="progress"
+                                                                                        style="width: 100%; height: 20px; margin-right: 10px;">
+                                                                                        <div class="progress-bar bg-success"
+                                                                                            role="progressbar"
+                                                                                            [style.width]="getUserProgress(goal) + '%'"
+                                                                                            [attr.aria-valuenow]="getUserProgress(goal)"
+                                                                                            aria-valuemin="0"
+                                                                                            aria-valuemax="100">
+                                                                                            {{ getUserProgress(goal) }}%
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <p id="progress-text"
+                                                                                        class="h4 text-center pb-4 mb-2">{{
+                                                                                        getUserProgress(goal) }}%</p>
+                                                                                    <p class="inprogress-button ms-2 mb-2">
+                                                                                        In progress</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <a [routerLink]="['/goal-activity-detail-page/', goal._id]"
+                                                                                class="btn btn-outline-primary float-end me-1 mb-2">Read
+                                                                                More</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>

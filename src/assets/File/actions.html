@@ -1,0 +1,488 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website Title</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+</head>
+<body id="body">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="navbar-logo">
+                <a href="index.html"><img src="assets/images/natura1.png"></a>
+            </div>
+            <div class="list-group list-group-flush sidebar-text">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.html">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="community.html">
+                    <i class="fa-solid fa-users"></i> Community
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="actions.html">
+                    <i class="fa-solid fa-clipboard-check"></i> Actions
+                </a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR SECTION -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn" id="sidebarToggle">
+                        <i class="fa-solid fa-bars-staggered fa-xl" style="color: #78B3CE;"></i>
+                    </button>
+            
+                    <!-- Navbar Content -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <!-- Paper Plane Icon -->
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="chat-page.html">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span class="badge">3</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="navbar-nav ms-auto me-3">
+                            <li class="nav-item position-relative">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="badge">5</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+            
+                        <!-- Profile Section -->
+                        <ul class="navbar-nav ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="profile.html">
+                                    <img src="assets/images/Cat03.jpg" class="circle-image me-2" alt="Circle Image">
+                                    <span>User</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>You have 3 new messages</li>
+                                <li>Your profile has been updated</li>
+                                <li>Meeting scheduled at 3 PM</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NAVBAR END -->
+
+
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Nav Tabs -->
+                    <ul class="nav nav-tabs bg-white content-tab" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="goal-tab" data-bs-toggle="tab" data-bs-target="#goal-tab-pane" type="button" role="tab" aria-controls="goal-tab-pane" aria-selected="true">Goal Activity</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="educational-tab" data-bs-toggle="tab" data-bs-target="#educational-tab-pane" type="button" role="tab" aria-controls="educational-tab-pane" aria-selected="false">Learning Educational</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="progress-tab" data-bs-toggle="tab" data-bs-target="#progress-tab-pane" type="button" role="tab" aria-controls="progress-tab-pane" aria-selected="false">Goal Progress</button>
+                        </li>
+                    </ul>
+            
+                    <!-- Tab Contents -->
+                    <div class="tab-content" id="myTabContent">
+
+                        <!-- Goal Tab -->
+                        <div class="tab-pane fade show active pt-2" id="goal-tab-pane" role="tabpanel" aria-labelledby="goal-tab" tabindex="0">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 mt-4">                                            
+                                            <p>Recent Activities</p>
+                                            <div class="swiper-container container1">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide col-6">
+                                                        <div class="card goal-card mb-3 border-left-primary">
+                                                            <div class="row g-0">
+                                                                <div class="col-md-4">
+                                                                    <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                                </div>
+                                                                <div class="col-md-8 pb-2">
+                                                                    <div class="card-body">
+                                                                        <p class="card-title goal-card-title">Card Title</p>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <p class="tag-button me-1">Tags</p>
+                                                                            <p class="tag-button me-1">Tags</p>
+                                                                            <p class="tag-button me-1">Tags</p>
+                                                                        </div>
+                                                                        <p class="card-text text-clamp-3">
+                                                                            This is a wider card with supporting text below as a natural lead-in to
+                                                                            additional content. This content is a little bit longer.
+                                                                        </p>
+                                                                        <div class="d-flex justify-content-end">
+                                                                            <p class="available-button me-1">Available</p>
+                                                                        </div>
+                                                                        
+                                                                        <a href="#" class="btn btn-outline-primary float-end me-1 mb-2">Read More</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+
+                                                </div>
+                                                <!-- Pagination -->
+                                                <div class="swiper-pagination swiper-pagination1"></div>
+                                                <!-- Navigation -->
+                                                <!-- <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 col-md-4 mt-2">
+                                            <form class="d-flex" role="search">
+                                                <input class="form-control me-2" type="search" placeholder="Search activities" aria-label="Search">
+                                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                            </form>
+                                        </div>
+                                
+                                        <div class="col-12 col-md-4 mt-2">
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <p>All Activities</p>
+                                        <div class="col-md-12">
+                                            <div class="row">
+    
+                                                <div class="col-xl-6 mb-2 d-flex justify-content-center">
+                                                    <div class="card goal-card mb-3 border-left-primary">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4">
+                                                                <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                            </div>
+                                                            <div class="col-md-8 pb-2">                                                                
+                                                                <div class="card-body">
+                                                                    <p class="card-title goal-card-title">Card Title</p>
+                                                                    <div class="d-flex justify-content-start">
+                                                                        <p class="tag-button me-1">Tags</p>
+                                                                    </div>
+                                                                    <p class="card-text text-clamp-3">
+                                                                        This is a wider card with supporting text below as a natural lead-in to
+                                                                        additional content. This content is a little bit longer.
+                                                                    </p>
+                                                                    <div class="d-flex align-items-center justify-content-end mb-2">
+                                                                        <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                            <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                                        </div>
+                                                                        <p id="progress-text" class="h4 text-center pb-4 mb-2">0%</p>
+                                                                        <p class="inprogress-button ms-2 mb-2">In progress</p>
+                                                                    </div>
+                                                                    
+                                                                    <a href="#" class="btn btn-outline-primary float-end me-1 mb-2">Read More</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6 mb-2 d-flex justify-content-center">
+                                                    <div class="card goal-card mb-3 border-left-primary">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4">
+                                                                <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                            </div>
+                                                            <div class="col-md-8 pb-2">
+                                                                <div class="card-body">
+                                                                    <p class="card-title goal-card-title">Card Title</p>
+                                                                    <div class="d-flex justify-content-start">
+                                                                        <p class="tag-button me-1">Tags</p>
+                                                                    </div>
+                                                                    <p class="card-text text-clamp-3">
+                                                                        This is a wider card with supporting text below as a natural lead-in to
+                                                                        additional content. This content is a little bit longer.
+                                                                    </p>
+                                                                    <div class="d-flex justify-content-end">
+                                                                        <p class="available-button me-1">Available</p>
+                                                                    </div>
+                                                                    <a href="#" class="btn btn-outline-primary float-end me-1 mb-2">Read More</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+    
+                                            </div>    
+                                        </div>
+                            
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Goal Tab End -->
+            
+                        <!-- Educational Tab -->
+                        <div class="tab-pane fade pt-2" id="educational-tab-pane" role="tabpanel" aria-labelledby="educational-tab" tabindex="0">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 mt-4">
+                                            <p>Recent Content</p>
+                                            <div class="swiper-container container2">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide col-4">                                                
+                                                        <div class="card article-card shadow-sm position-relative">
+                                                            <p class="badge-article position-absolute top-0 end-0 bg-primary text-white m-2 px-2 py-1">Article</p>
+                                                            <img src="assets/images/Group 1.png" class="card-img-top" alt="...">
+                                                            <div class="card-body">
+                                                                <p class="card-title article-card-title">Card title</p>
+                                                                <div class="d-flex justify-content-start">
+                                                                    <p class="tag-button me-1">Tags</p>
+                                                                </div>   
+                                                                <p class="card-text text-clamp-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <a href="#" class="btn btn-outline-primary float-end">Read More</a>                                       
+                                                            </div>
+                                                        </div>                               
+                                                    </div>
+                                                    
+
+                                                </div>
+                                                <!-- Pagination -->
+                                                <div class="swiper-pagination swiper-pagination2"></div>
+                                                <!-- Navigation -->
+                                                <!-- <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 col-md-4 mt-2">
+                                            <form class="d-flex" role="search">
+                                                <input class="form-control me-2" type="search" placeholder="Search activities" aria-label="Search">
+                                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                            </form>
+                                        </div>
+                                    
+                                        <div class="col-12 col-sm-6 col-md-4 mt-2">
+                                            <select class="form-select">
+                                                <option selected>Sort by Content</option>
+                                                <option value="1">Articles</option>
+                                                <option value="2">Videos</option>
+                                                <option value="3">Infographics</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-md-4 mt-2">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-md-12">
+                                            <p>Learning Content</p>
+                                            <div class="row d-flex flex-wrap">
+    
+                                                <div class="col-md-4 mb-2">
+                                                    <div class="card article-card shadow-sm position-relative">
+                                                        <p class="badge-article position-absolute top-0 end-0 bg-primary text-white m-2 px-2 py-1">Article</p>
+                                                        <img src="assets/images/Group 1.png" class="card-img-top" alt="...">
+                                                        <div class="card-body">
+                                                            <p class="card-title article-card-title">Card title</p>
+                                                            <div class="d-flex justify-content-start">
+                                                                <p class="tag-button me-1">Tags</p>
+                                                            </div>   
+                                                            <p class="card-text text-clamp-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                            <a href="#" class="btn btn-outline-primary float-end">Read More</a>                                       
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>                           
+                        </div>
+                        <!-- Educational Tab End -->
+
+                        <!-- Goal Progress Tab -->
+                        <div class="tab-pane fade pt-2" id="progress-tab-pane" role="tabpanel" aria-labelledby="progress-tab" tabindex="0">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                        
+                                    <div class="row">
+                                        <div class="col-md-12 mt-4">
+                                            <p>In Progress</p>
+                                            <div class="swiper-container container1">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide col-6">
+                                                        <div class="card goal-card mb-3 border-left-primary">
+                                                            <div class="row g-0">
+                                                                <div class="col-md-4">
+                                                                    <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                                </div>
+                                                                <div class="col-md-8 pb-2">                                                                
+                                                                    <div class="card-body">
+                                                                        <p class="card-title goal-card-title">Card Title</p>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <p class="tag-button me-1">Tags</p>
+                                                                        </div>
+                                                                        <p class="card-text text-clamp-3">
+                                                                            This is a wider card with supporting text below as a natural lead-in to
+                                                                            additional content. This content is a little bit longer.
+                                                                        </p>
+                                                                        <div class="d-flex align-items-center justify-content-end mb-2">
+                                                                            <div class="progress" style="width: 70%; height: 20px; margin-right: 10px;">
+                                                                                <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                                                            </div>
+                                                                            <p id="progress-text" class="h4 text-center pb-4 mb-2">0%</p>
+                                                                            <p class="inprogress-button ms-2 mb-2">In progress</p>
+                                                                        </div>
+                                                                        
+                                                                        <a href="#" class="btn btn-outline-primary float-end me-1 mb-2">Read More</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                </div>
+                                                <!-- Pagination -->
+                                                <div class="swiper-pagination swiper-pagination1"></div>
+                                                <!-- Navigation -->
+                                                <!-- <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <p>Activity Done</p>
+
+                                        <div class="col-md-12">
+                                            <div class="row">    
+                                                <div class="col-xl-6 mb-2 d-flex justify-content-center">
+                                                    <div class="card goal-card mb-3 border-left-primary">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4">
+                                                                <img src="assets/images/Cat03.jpg" class="img-fluid h-100 goal-card" alt="#">
+                                                            </div>
+                                                            <div class="col-md-8 pb-2">
+                                                                <div class="card-body">
+                                                                    <p class="card-title goal-card-title">Card Title</p>
+                                                                    <div class="d-flex justify-content-start">
+                                                                        <p class="tag-button me-1">Tags</p>
+                                                                    </div>
+                                                                    <p class="card-text text-clamp-3">
+                                                                        This is a wider card with supporting text below as a natural lead-in to
+                                                                        additional content. This content is a little bit longer.
+                                                                    </p>
+                                                                    <div class="d-flex justify-content-end">
+                                                                        <p class="completed-button me-1">completed</p>
+                                                                    </div>
+                                                                    <a href="#" class="btn btn-outline-primary float-end me-1 mb-2">Read More</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6 mb-2 d-flex justify-content-center">
+                                                    <div class="card goal-card mb-3 border-left-primary">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4">
+                                                                <img src="assets/images/Group 1.png" class="img-fluid h-100 goal-card" alt="#">
+                                                            </div>
+                                                            <div class="col-md-8 pb-2">
+                                                                <div class="card-body">
+                                                                    <p class="card-title goal-card-title">Card Title</p>
+                                                                    <div class="d-flex justify-content-start">
+                                                                        <p class="tag-button me-1">Tags</p>
+                                                                    </div>
+                                                                    <p class="card-text text-clamp-3">
+                                                                        This is a wider card with supporting text below as a natural lead-in to
+                                                                        additional content. This content is a little bit longer.
+                                                                    </p>
+                                                                    <div class="d-flex justify-content-end">
+                                                                        <p class="completed-button me-1">completed</p>
+                                                                    </div>
+                                                                    <a href="#" class="btn btn-outline-primary float-end me-1 mb-2">Read More</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+    
+                                            </div>    
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                         <!-- Goal Progress Tab End -->
+                        
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="assets/chart.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/swiper.js"></script>
+    
+</body>
+</html>
